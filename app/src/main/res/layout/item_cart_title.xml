@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_margin="9dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="329dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#ff2c2c2c"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:id="@+id/second_title"
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:text=""
+        android:textColor="#ffe93b3d"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:id="@+id/moneylineatlayout"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/second_title"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥"
+            android:textColor="#ffe93b3d"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/sum"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="库存："
+            android:textColor="#ff5f5f5f"
+            android:textSize="9sp" />
+        <TextView
+            android:id="@+id/sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="销量："
+            android:textColor="#ff5e5e5e"
+            android:textSize="9sp"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

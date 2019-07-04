@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.jiudi.shopping">
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
+
+
+    <uses-permission android:name="com.jiudi.shopping.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- 高德地图 -->
+    <!-- 允许程序打开网络套接字 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 允许程序设置内置sd卡的写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 允许程序打电话 -->
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <!-- GPS -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+
+
+    <application
+        android:name="com.jiudi.shopping.global.LocalApplication"
+        tools:replace="android:theme"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/logo"
+        android:supportsRtl="true"
+        android:theme="@style/MyTheme">
+
+        <activity android:name="com.jiudi.shopping.ui.main.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <!-- tools:replace="android:value" -->
+        <activity android:name="com.jiudi.shopping.ui.main.MainActivity" android:launchMode="singleTask">
+
+        </activity>
+        <activity android:name="com.jiudi.shopping.ui.user.account.LoginActivity" android:launchMode="singleTop">
+        </activity>
+        <activity android:name="com.jiudi.shopping.ui.user.account.RegisterActivity"/>
+        <activity android:name="com.jiudi.shopping.ui.user.account.ForgetPwdActivity"/>
+        <activity android:name="com.jiudi.shopping.ui.user.account.UserInfoActivity"/>
+        <activity android:name="com.jiudi.shopping.ui.user.account.UserSettingActivity"/>
+        <activity android:name="com.jiudi.shopping.ui.user.account.UpdatePwdActivity"/>
+        <activity android:name="com.jiudi.shopping.ui.user.account.FeedBackActivity"/>
+        <activity android:name="com.jiudi.shopping.ui.user.account.AboutUsActivity"/>
+
+        <activity android:name="com.amap.api.navi.AmapRouteActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+
+        <service android:name="com.jiudi.shopping.service.AppUpdateService"/>
+
+        <!--高德地图-->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="05c5e35d54753755ec0339f133e392c2"/>
+        <service android:name="com.amap.api.location.APSService"/>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.jiudi.shopping.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+
+        <activity android:name="com.jiudi.shopping.widget.ZoomActivity"/>
+
+        <!-- 微信支付回调界面 -->
+        <activity
+            android:name="com.jiudi.shopping.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"/>
+
+         <!--微信登录、绑定、分享的回调界面-->
+        <activity
+            android:name="com.jiudi.shopping.wxapi.WXEntryActivity"
+            android:exported="true"
+            tools:replace="android:theme"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent"/>
+
+        <!-- 支付宝支付H5页面 -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+        </activity>
+
+        <activity android:name="com.jiudi.shopping.ui.user.QuestionActivity">
+        </activity>
+        <activity android:name="com.jiudi.shopping.ui.main.PayActivity">
+        </activity>
+        <activity android:name="com.jiudi.shopping.ui.main.PayCompleteActivity">
+        </activity>
+        <activity android:name="com.jiudi.shopping.ui.main.ChooseCityActivity" android:theme="@style/DefaultCityPickerTheme">
+        </activity>
+        <activity android:name="com.jiudi.shopping.ui.main.PayAllActivity" />
+        <activity android:name="com.jiudi.shopping.ui.user.AllOrderActivity" />
+        <activity android:name="com.jiudi.shopping.ui.user.OrderDetailActivity" />
+        <activity android:name="com.jiudi.shopping.ui.main.PayAllReleaseActivity" />
+        <activity android:name="com.jiudi.shopping.ui.user.AddressListActivity" />
+        <activity android:name="com.jiudi.shopping.ui.user.AddressActivity" />
+        <activity android:name="com.jiudi.shopping.ui.main.ChooseCityActivityNoCopy"  android:theme="@style/DefaultCityPickerTheme"/>
+        <activity android:name=".ui.main.GuideActivity" />
+        <activity android:name=".ui.cart.CartDetailActivity" />
+        <activity android:name=".ui.cart.DingDanActivity" />
+        <activity android:name=".ui.cart.PayDingDanActivity" android:windowSoftInputMode="stateHidden|stateUnchanged"  />
+        <activity android:name=".ui.cart.WuLiuActivity" />
+        <activity android:name=".ui.fenxiao.FenXiaoNoActivity" />
+        <activity android:name=".ui.fenxiao.FenXiaoMenuActivity" />
+        <activity android:name=".ui.fenxiao.TuanDuiActivity" />
+        <activity android:name=".ui.fenxiao.TuiGuangActivity" />
+        <activity android:name=".ui.user.account.AccountActivity" />
+        <activity android:name=".ui.user.account.TongZhiActivity" />
+        <activity android:name=".ui.user.account.ShouCangActivity" />
+        <activity android:name=".ui.user.ShopSettingActivity" />
+        <activity android:name=".ui.user.account.TiXianActivity" />
+        <activity android:name=".ui.user.account.AddDiscussActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name=".ui.user.account.DiscussListActivity" />
+        <activity android:name=".ui.user.AllQuanActivity" />
+        <activity android:name=".ui.main.SearchShopActivity" />
+        <activity android:name=".ui.user.account.TextActivity" />
+        <activity android:name=".ui.user.account.FenXiaoAccountActivity" />
+        <activity android:name=".ui.user.ShowImageActivity" />
+        <activity android:name=".ui.main.SearchShopBeforeActivity" />
+        <activity android:name=".ui.main.MainNewActivity" android:launchMode="singleTask">
+
+        </activity>
+        <activity android:name=".ui.main.MainNewOldActivity" android:launchMode="singleTask" />
+        <activity android:name=".ui.fenxiao.FenXiaoNo2Activity" />
+        <activity android:name=".ui.cart.CartDetailActivityCopy" />
+        <activity android:name=".ui.main.SearchMenuShopActivity" />
+        <activity android:name=".ui.user.account.WorkEachActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+
+
+        <service android:name="com.jiudi.shopping.ShopPushService"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action" />
+            </intent-filter>
+        </service>
+        <receiver android:name="com.jiudi.shopping.ShopMessagePushService">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+                <category android:name="com.jiudi.shopping"></category>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.jiudi.shopping.ShopCustomReceiver"
+            android:exported="false"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="com.jiudi.shopping" />
+            </intent-filter>
+        </receiver>
+
+
+
+
+    </application>
+
+</manifest>

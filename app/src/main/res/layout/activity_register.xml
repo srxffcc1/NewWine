@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/reg_bg"
+    android:paddingTop="@dimen/dp_23"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+
+    tools:context="com.jiudi.shopping.ui.user.account.LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="60dp"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/reg_icon"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/phone_l"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animationCache="false"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:text="+86"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ems="10"
+                android:hint="请输入手机号"
+                android:inputType="phone"
+                android:paddingLeft="15dp"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:textColor="@color/colorTitle"
+                android:textColorHint="#ff818181"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="206dp"
+                tools:layout_editor_absoluteY="8dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        style="@style/HorizontalLine"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></View>
+
+    <LinearLayout
+        android:id="@+id/yanzhengma_l"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingTop="@dimen/dp_20"
+        android:paddingBottom="@dimen/dp_10"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+
+        <EditText
+            android:id="@+id/yanzhengma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ems="10"
+            android:hint="请输入验证码"
+            android:inputType="number"
+            android:paddingLeft="15dp"
+            android:textColor="@color/colorTitle"
+            android:textColorHint="#ff818181"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/yanzhengma_t"
+            android:padding="5dp"
+            android:background="@drawable/text_boder_r_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="发送验证码"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <View
+        style="@style/HorizontalLine"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></View>
+
+
+    <LinearLayout
+        android:id="@+id/pwd_l"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10">
+
+        <EditText
+            android:id="@+id/pwd"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ems="10"
+            android:hint="请设置密码"
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:textColor="@color/colorTitle"
+            android:textColorHint="#ff818181"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/pwd_i"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.07"
+            android:paddingRight="10dp"
+            app:srcCompat="@drawable/eye_close_white" />
+    </LinearLayout>
+
+    <View
+        style="@style/HorizontalLine"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></View>
+
+    <LinearLayout
+        android:id="@+id/ycode_l"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animationCache="false"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <EditText
+                android:id="@+id/ycode"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入邀请码-选填"
+                android:paddingLeft="15dp"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:textColor="@color/colorTitle"
+                android:textColorHint="#ff818181"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="206dp"
+                tools:layout_editor_absoluteY="8dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        style="@style/HorizontalLine"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></View>
+
+
+
+
+    <TextView
+        android:id="@+id/register"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_40"
+        android:background="@drawable/text_boder_r_red_r"
+        android:gravity="center"
+        android:text="保存注册信息"
+        android:textColor="@color/colorWhite"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:paddingTop="20dp"
+        android:text="用户注册代表同意《服务条款》"
+        android:textColor="#ff7f7f7f"
+        android:textSize="12sp" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="1" />
+
+
+</LinearLayout>

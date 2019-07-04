@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="收货人：自由人 15869841236"
+        android:textColor="#ff333333"
+        android:textSize="14sp"
+        />
+    <TextView
+        android:id="@+id/address"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="收货地址：江苏 苏州市 虎丘区 怀仁县 何舍路1223号14-
+1095"
+        android:textColor="#ff333333"
+        android:textSize="14sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingTop="10dp"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:id="@+id/check"
+            android:padding="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:button="@drawable/selector_cart" />
+        <TextView
+            android:paddingLeft="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="设为默认地址"
+            android:textColor="#ff333333"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:id="@+id/edit"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/text_boder_quan_g"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="编辑"
+            android:textColor="#ff333333"
+            android:textSize="13sp"
+            />
+        <TextView
+            android:id="@+id/delete"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/text_boder_quan_g"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:textColor="#ff333333"
+            android:textSize="13sp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

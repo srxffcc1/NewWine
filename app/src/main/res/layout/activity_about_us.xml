@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:paddingTop="@dimen/dp_23"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@drawable/ic_back" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/about_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/image"
+            android:id="@+id/jiudizhixuan"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="九弟智选"
+            android:textColor="#ff191919"
+            android:textSize="19sp"
+            />
+        <TextView
+
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/jiudizhixuan"
+            android:id="@+id/version"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Version 1.0.0"
+            android:textColor="#ff191919"
+            android:textSize="14sp"
+            />
+        <TextView
+
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/version"
+            android:id="@+id/guanyujiudi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关于九弟智选"
+            android:textColor="#ffe95048"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:layout_marginTop="20dp"
+            android:lineSpacingMultiplier="1.2"
+            android:layout_below="@+id/guanyujiudi"
+            android:id="@+id/guanyuneirong"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#ff191919"
+            android:textSize="12sp"
+            />
+
+
+
+        <LinearLayout
+            android:layout_above="@+id/banquan"
+            android:id="@+id/yingsi"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/left"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户协议"
+                android:textColor="#ffea5048"
+                android:textSize="10sp"
+                />
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="和"
+                android:textColor="#000"
+                android:textSize="10sp"
+                />
+            <TextView
+                android:id="@+id/right"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="隐私政策"
+                android:textColor="#ffea5048"
+                android:textSize="10sp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/banquan"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="版权所有©2019-2021九弟物联网科技有限公司保留一切权利"
+            android:textColor="#ff737373"
+            android:textSize="10sp"
+            />
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

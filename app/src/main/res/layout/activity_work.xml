@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content">
                 <ImageView
                     android:layout_marginTop="30dp"
-                    android:layout_width="31dp"
+                    android:layout_width="68dp"
                     android:src="@drawable/reg_icon"
                     android:layout_height="31dp" />
                 <TextView

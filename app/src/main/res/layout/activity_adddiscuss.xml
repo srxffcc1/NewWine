@@ -76,7 +76,7 @@
                     android:textColor="#ff2b2b2b"
                     android:textSize="13sp"
                     />
-                <com.jiudi.shopping.widget.KRatingBar
+                <com.jiudi.wine.widget.KRatingBar
                     android:clickable="true"
                     android:id="@+id/ratingbar1"
                     android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                     android:textColor="#ff2b2b2b"
                     android:textSize="13sp"
                     />
-                <com.jiudi.shopping.widget.KRatingBar
+                <com.jiudi.wine.widget.KRatingBar
                     android:clickable="true"
                     android:id="@+id/ratingbar2"
                     android:layout_width="wrap_content"

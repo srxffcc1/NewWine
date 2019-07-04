@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="您的粉丝中有0位成为了店主，为您分成累计0元"
+            android:text="您的粉丝中有0位成为了代理，为您分成累计0元"
             android:textColor="#ff727272"
             android:textSize="12sp" />
     </LinearLayout>

@@ -36,7 +36,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_seach" />
 
-            <com.jiudi.shopping.widget.ClearEditText
+            <com.jiudi.wine.widget.ClearEditText
                 android:id="@+id/search_tag"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

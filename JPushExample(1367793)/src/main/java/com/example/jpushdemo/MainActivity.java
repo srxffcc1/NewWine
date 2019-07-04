@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import cn.jpush.android.api.InstrumentedActivity;
 import cn.jpush.android.api.JPushInterface;
- import  com.jiudi.shopping.R;
+ import  com.jiudi.wine.R;
 
 
 

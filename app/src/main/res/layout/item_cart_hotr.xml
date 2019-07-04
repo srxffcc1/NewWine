@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="@drawable/re_hot"
+        android:background="@drawable/re_hot3"
         android:layout_height="wrap_content"></LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,14 +23,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="24h热销榜"
+                android:text="           "
                 android:textColor="#ffffffff"
                 android:textSize="16sp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="排序由销量、搜索、好评等综合得出"
+                android:text=" "
                 android:textColor="#ffffffff"
                 android:textSize="12sp"
                 />

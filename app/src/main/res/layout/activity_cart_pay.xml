@@ -200,7 +200,7 @@
                 android:text="支付方式"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <com.jiudi.shopping.widget.BigRadioGroup
+            <com.jiudi.wine.widget.BigRadioGroup
                 android:id="@+id/paytypegroup"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
@@ -282,7 +282,7 @@
                         android:button="@drawable/selector_cart" />
                 </LinearLayout>
 
-            </com.jiudi.shopping.widget.BigRadioGroup>
+            </com.jiudi.wine.widget.BigRadioGroup>
 
         </LinearLayout>
     </ScrollView>

@@ -9,7 +9,7 @@
     android:gravity="center_horizontal"
     android:paddingTop="@dimen/dp_23"
     android:orientation="vertical"
-    tools:context="com.jiudi.shopping.ui.user.account.LoginActivity">
+    tools:context="com.jiudi.wine.ui.user.account.LoginActivity">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -324,12 +324,12 @@
                     android:textSize="14sp"
                     />
                 <TextView
+                    android:id="@+id/passfuwu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/tuijian_hb"
                     android:paddingBottom="60dp"
                     android:drawablePadding="5dp"
-                    android:text="新用户注册成功，就能领取5元新人注册优惠券"
+                    android:text="注册或登录代表您已阅读并同意《服务条款》"
                     android:textColor="#ff868686"
                     android:textSize="12sp"
                     />

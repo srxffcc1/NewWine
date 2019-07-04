@@ -6,7 +6,7 @@
     android:background="#FFF"
     android:orientation="vertical"
     android:paddingTop="@dimen/dp_23"
-    tools:context="com.jiudi.shopping.ui.main.MineFragment">
+    tools:context="com.jiudi.wine.ui.main.MineFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

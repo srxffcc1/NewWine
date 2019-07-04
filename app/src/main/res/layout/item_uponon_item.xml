@@ -38,7 +38,7 @@
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/head"
             android:gravity="center"
-            android:text="钻石店主"
+            android:text="钻石代理"
             android:textSize="12sp" />
 
     </RelativeLayout>

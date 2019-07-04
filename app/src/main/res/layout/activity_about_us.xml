@@ -41,7 +41,7 @@
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="九弟智选"
+            android:text="同城快酒"
             android:textColor="#ff191919"
             android:textSize="19sp"
             />
@@ -64,7 +64,7 @@
             android:id="@+id/guanyujiudi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="关于九弟智选"
+            android:text="关于同城快酒"
             android:textColor="#ffe95048"
             android:textSize="16sp"
             />

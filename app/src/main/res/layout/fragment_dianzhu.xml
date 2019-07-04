@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     android:orientation="vertical"
-    tools:context="com.jiudi.shopping.ui.main.MineFragment">
+    tools:context="com.jiudi.wine.ui.main.MineFragment">
 
 
 </LinearLayout>

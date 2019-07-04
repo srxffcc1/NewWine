@@ -22,7 +22,6 @@
                 android:id="@+id/head"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_below="@id/setting"
                 android:layout_centerVertical="true"
                 android:src="@drawable/default_circle" />
 
@@ -51,7 +50,7 @@
                 android:layout_toRightOf="@+id/head"
                 android:background="@drawable/level_bg"
                 android:gravity="center"
-                android:text="钻石店主"
+                android:text="钻石代理"
                 android:textColor="#ffffffff"
                 android:textSize="12sp" />
 
@@ -85,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="17dp"
-                    android:text="钻石店主尊享6大权益"
+                    android:text="钻石代理尊享6大权益"
                     android:textColor="#ff964421"
                     android:textSize="20sp" />
 
@@ -635,7 +634,7 @@
                 android:layout_width="match_parent"
                 android:paddingTop="5dp"
                 android:layout_height="wrap_content"
-                android:text="购买以下任意商品即可成为钻石店主"
+                android:text="购买以下任意商品即可成为钻石代理"
                 android:textColor="#ff363636"
                 android:textSize="10sp" />
         </LinearLayout>

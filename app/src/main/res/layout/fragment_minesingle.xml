@@ -15,7 +15,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#D93B30"
+            android:background="#67462C"
             android:padding="15dp">
 
             <ImageView
@@ -54,7 +54,7 @@
                 android:drawableRight="@drawable/act_pen"
                 android:drawablePadding="8dp"
                 android:text="用户昵343434343434343434343434称"
-                android:textColor="#ffffffff"
+                android:textColor="#FFF6CD"
                 android:textSize="19sp" />
 
             <TextView
@@ -67,7 +67,7 @@
                 android:layout_toRightOf="@+id/head"
                 android:background="@drawable/level_bg"
                 android:gravity="center"
-                android:text="钻石店主"
+                android:text="钻石代理"
                 android:textColor="#ffffffff"
                 android:textSize="12sp" />
 
@@ -79,14 +79,14 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/level"
                 android:text="邀请码：123456asd"
-                android:textColor="#ffffffff"
+                android:textColor="#FFF6CD"
                 android:textSize="12sp" />
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#D93B30"
+            android:background="#67462C"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -103,14 +103,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="加入即享"
-                    android:textColor="#fff" />
+                    android:textColor="#FFF6CD" />
 
                 <TextView
                     android:id="@+id/dianzhu2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="店主权益"
-                    android:textColor="#fff" />
+                    android:text="代理权益"
+                    android:textColor="#FFF6CD" />
             </LinearLayout>
 
             <TextView
@@ -140,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="收藏"
-                    android:textColor="#fff" />
+                    android:textColor="#FFF6CD" />
             </LinearLayout>
 
             <TextView
@@ -148,7 +148,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="#fff" />
+                android:background="#FFF6CD" />
 
             <LinearLayout
 
@@ -164,13 +164,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="#fff" />
+                    android:textColor="#FFF6CD" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="足迹"
-                    android:textColor="#fff" />
+                    android:textColor="#FFF6CD" />
             </LinearLayout>
 
             <TextView
@@ -194,13 +194,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="#fff" />
+                    android:textColor="#FFF6CD" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="优惠券"
-                    android:textColor="#fff" />
+                    android:textColor="#FFF6CD" />
             </LinearLayout>
         </LinearLayout>
 
@@ -217,7 +217,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="#D93B30"></LinearLayout>
+                    android:background="#67462C"></LinearLayout>
 
 
             </LinearLayout>
@@ -247,7 +247,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="215"
                     android:text=""
-                    android:textColor="#ff262625"
+                    android:textColor="#FFF6CD"
                     android:textSize="12sp" />
 
                 <TextView
@@ -423,7 +423,7 @@
                     android:layout_weight="1"
                     android:drawableTop="@drawable/act_dianzhu"
                     android:gravity="center"
-                    android:text="店主权益" />
+                    android:text="代理权益" />
 
                 <TextView
                     android:id="@+id/erweima"
@@ -432,7 +432,7 @@
                     android:layout_weight="1"
                     android:drawableTop="@drawable/act_zxing"
                     android:gravity="center"
-                    android:text="推广二维码" />
+                    android:text="商务合作" />
 
                 <TextView
                     android:id="@+id/lianxikefu"

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jiudi.shopping"   
+    package="com.jiudi.wine"
     android:versionCode="320"
     android:versionName="3.2.0"
     >
@@ -8,7 +8,7 @@
 
     <!-- Required -->
     <permission
-        android:name="com.jiudi.shopping.permission.JPUSH_MESSAGE"
+        android:name="com.jiudi.wine.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
   
     <!-- Required  一些系统要求的权限，如访问网络等-->
@@ -97,7 +97,7 @@
         </service>
         <!-- since 3.0.9 Required SDK 核心功能-->
         <provider
-            android:authorities="com.jiudi.shopping.DataProvider"
+            android:authorities="com.jiudi.wine.DataProvider"
             android:name="cn.jpush.android.service.DataProvider"
             android:process=":pushcore"
             android:exported="false"
@@ -117,7 +117,7 @@
         </service>
         <!-- since 3.1.0 Required SDK 核心功能-->
         <provider
-            android:authorities="com.jiudi.shopping.DownloadProvider"
+            android:authorities="com.jiudi.wine.DownloadProvider"
             android:name="cn.jpush.android.service.DownloadProvider"
             android:exported="true"
         />

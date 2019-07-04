@@ -6,11 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context="com.jiudi.shopping.ui.main.MainActivity"
+    tools:context="com.jiudi.wine.ui.main.MainActivity"
 
     >
 
-    <com.jiudi.shopping.widget.NoHScrollViewPager
+    <com.jiudi.wine.widget.NoHScrollViewPager
         android:id="@+id/vp_activity_main"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_0"

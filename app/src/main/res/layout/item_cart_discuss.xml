@@ -40,7 +40,7 @@
             android:textColor="#fffff193"
             android:textSize="9sp" />
 
-        <com.jiudi.shopping.widget.KRatingBar
+        <com.jiudi.wine.widget.KRatingBar
             android:id="@+id/ratingbar2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

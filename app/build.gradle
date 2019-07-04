@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.jiudi.shopping"
+        applicationId "com.jiudi.wine"
         minSdkVersion 18
         targetSdkVersion 26
         versionCode 10
@@ -62,7 +62,7 @@ android {
     }
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "九弟智选"+"-${variant.versionCode}.apk"
+            outputFileName = "同城快酒"+"-${variant.versionCode}.apk"
         }
     }
 }

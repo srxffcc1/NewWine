@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <com.jiudi.shopping.widget.BannerLayout
+            <com.jiudi.wine.widget.BannerLayout
                 android:id="@+id/bl_fragment_home"
                 android:layout_width="match_parent"
                 android:layout_height="165dp"
@@ -72,7 +72,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="店主权益"/>
+                            android:text="代理权益"/>
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/center_2"

@@ -5,10 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <com.jiudi.shopping.widget.BannerLayout
+    <com.jiudi.wine.widget.BannerLayout
         android:id="@+id/bannerlayout"
         android:layout_width="match_parent"
-        android:layout_height="950px"
+        android:layout_height="1080px"
         android:layout_marginTop="@dimen/dp_0"
         app:autoPlayDuration="5000"
         app:indicatorMargin="@dimen/dp_15"

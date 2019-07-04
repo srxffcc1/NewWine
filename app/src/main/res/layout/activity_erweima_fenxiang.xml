@@ -56,7 +56,7 @@
                     android:gravity="center"
                     android:layout_height="0dp"
                     android:layout_weight="2"
-                    android:text="九弟智选"
+                    android:text="同城快酒"
                     android:textColor="#ffffffff"
                     android:textSize="36sp"
                     />
@@ -73,7 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="下载安装九弟智选APP\n逛街购物拿红利"
+                    android:text="下载安装同城快酒APP\n逛街购物拿红利"
                     android:textColor="#ffffffff"
                     android:textSize="15sp"
                     />
@@ -110,7 +110,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="邀请粉丝或店主得奖励"
+                    android:text="邀请粉丝或代理得奖励"
                     android:textColor="#ffffffff"
                     android:textSize="15sp"
                     />

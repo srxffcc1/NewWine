@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
     android:background="#FFF"
-              tools:context="com.jiudi.shopping.ui.main.MineFragment">
+              tools:context="com.jiudi.wine.ui.main.MineFragment">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -28,7 +28,7 @@
                     android:textColor="#ff2b2b2b"
                     android:textSize="13sp"
                     />
-                <com.jiudi.shopping.widget.KRatingBar
+                <com.jiudi.wine.widget.KRatingBar
                     android:id="@+id/ratingbar2"
                     android:layout_width="0dp"
                     android:layout_weight="1"

@@ -497,6 +497,7 @@ public class PayDingDanActivity extends BaseActivity {
                     }
 
                 } catch (JSONException e) {
+                    Toast.makeText(mActivity,"Json解析出错",Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
 
@@ -505,7 +506,7 @@ public class PayDingDanActivity extends BaseActivity {
 
             @Override
             public void onError(Throwable t) {
-
+                Toast.makeText(mActivity,"服务器出错",Toast.LENGTH_SHORT).show();
                 DialogUtil.hideProgress();
             }
         });

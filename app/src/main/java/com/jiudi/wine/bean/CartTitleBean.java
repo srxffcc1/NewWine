@@ -47,4 +47,14 @@ public class CartTitleBean {
     public String userLike;
     public String like_num;
     public String userCollect;
+    public String is_agent;
+    public String vol;
+    public String pro_address;
+    public String pack_nomals;
+    public String wine_tech;
+    public String materials;
+    public String nw;
+    public String factory;
+    public String save_condition;
+    public String name;
 }

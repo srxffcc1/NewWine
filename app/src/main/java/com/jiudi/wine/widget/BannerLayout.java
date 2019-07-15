@@ -73,6 +73,12 @@ public class BannerLayout extends RelativeLayout {
 
     private int currentPosition;
 
+    public void setCheckscaletype(ImageView.ScaleType checkscaletype) {
+        this.checkscaletype = checkscaletype;
+    }
+
+    private ImageView.ScaleType checkscaletype;
+
     /**
      * 一张图片是否可以滑动
      */
@@ -224,7 +230,7 @@ public class BannerLayout extends RelativeLayout {
                 }
             }
         });
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setScaleType(checkscaletype==null?ImageView.ScaleType.FIT_CENTER:checkscaletype);
 
         RequestOptions options = new RequestOptions()
                 .fitCenter()
@@ -274,7 +280,7 @@ public class BannerLayout extends RelativeLayout {
                 }
             }
         });
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setScaleType(checkscaletype==null?ImageView.ScaleType.FIT_CENTER:checkscaletype);
 
         RequestOptions options = new RequestOptions()
                 .fitCenter()

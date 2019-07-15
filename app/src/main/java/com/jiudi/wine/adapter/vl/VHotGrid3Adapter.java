@@ -80,8 +80,8 @@ public class VHotGrid3Adapter extends DelegateAdapter.Adapter {
         }else{
             secondTitle.setVisibility(View.VISIBLE);
         }
+//        showPrice.setText("¥"+("1".equals((AccountManager.sUserBean==null?"0":AccountManager.sUserBean.is_promoter))?carChoiceBean.vip_price:carChoiceBean.price));
         showPrice.setText("¥"+("1".equals((AccountManager.sUserBean==null?"0":AccountManager.sUserBean.is_promoter))?carChoiceBean.vip_price:carChoiceBean.price));
-
 
         RequestOptions options = new RequestOptions()
                 .fitCenter()

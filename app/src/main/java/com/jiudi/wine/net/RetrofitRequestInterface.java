@@ -199,10 +199,15 @@ public interface RetrofitRequestInterface {
     Call<String> getTuanDui(@Header("Authorization") String auth,@FieldMap Map<String, String> params);
 
 
-    /*获得分销信息*/
+    /*获得代理人升级*/
     @FormUrlEncoded
     @POST("api/my/user_pro")
     Call<String> getFenXiao(@Header("Authorization") String auth,@FieldMap Map<String, String> params);
+
+    /*获得非代理人升级*/
+    @FormUrlEncoded
+    @POST("api/my/guide")
+    Call<String> getFenXiao2(@Header("Authorization") String auth,@FieldMap Map<String, String> params);
 
     /*获得物流信息*/
     @FormUrlEncoded

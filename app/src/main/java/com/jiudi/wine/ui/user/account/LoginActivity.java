@@ -73,6 +73,7 @@ public class LoginActivity extends BaseActivity {
     private LinearLayout weixinloginc;
     private TextView changepass;
     private TextView passfuwu;
+    private TextView passxieyi;
 
 
     @Override
@@ -110,6 +111,7 @@ public class LoginActivity extends BaseActivity {
         weixinloginc = (LinearLayout) findViewById(R.id.weixinloginc);
         changepass = (TextView) findViewById(R.id.changepass);
         passfuwu = (TextView) findViewById(R.id.passfuwu);
+        passxieyi = (TextView) findViewById(R.id.passxieyi);
     }
 
     @Override
@@ -162,10 +164,17 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
+        passxieyi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mActivity, TextActivity.class).putExtra("url", RequestManager.mBaseUrl + "api/Article/visit/id/16"));
+            }
+        });
         passfuwu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(mActivity,TextActivity.class).putExtra("url",RequestManager.mBaseUrl+"api/Article/visit/id/1"));
+                startActivity(new Intent(mActivity, TextActivity.class).putExtra("url", RequestManager.mBaseUrl + "api/Article/visit/id/17"));
+
             }
         });
         changepass.setOnClickListener(new View.OnClickListener() {

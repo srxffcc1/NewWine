@@ -91,6 +91,7 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
     private LinearLayout quanl;
     private String chosetext;
     private LinearLayout gopass;
+    private TextView intergalv;
 
     private Dialog dialogchosetext;
 
@@ -145,6 +146,7 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
         stepl = (LinearLayout) holder.itemView.findViewById(R.id.stepl);
         quanl = (LinearLayout) holder.itemView.findViewById(R.id.quanl);
         gopass=(LinearLayout) holder.itemView.findViewById(R.id.gopass);
+        intergalv=holder.itemView.findViewById(R.id.intergalv);
         bindDataToView(AccountManager.sUserBean);
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,6 +168,12 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
                 context.startActivity(new Intent(context, TongZhiActivity.class));
             }
         });
+//        stepl.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                context.startActivity(new Intent(context, TuiGuangActivity.class));
+//            }
+//        });
         allOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -196,7 +204,6 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
                 context.startActivity(new Intent(v.getContext(), AllOrderActivity.class).putExtra("type", 4));
             }
         });
-
         erweima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -361,6 +368,7 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
                 code.setVisibility(View.GONE);
             }
 
+            intergalv.setText(AccountManager.sUserBean.integral);
             level.setText(shenfen);
 
             name.setText(AccountManager.sUserBean.nickname);

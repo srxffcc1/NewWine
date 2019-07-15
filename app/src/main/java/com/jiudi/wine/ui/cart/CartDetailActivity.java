@@ -285,7 +285,7 @@ public class CartDetailActivity extends BaseActivity {
 
         poss[2] = nowindex;
 
-        vIntroduceHeadAdapter = new VIntroduceHeadAdapter(this, new SingleLayoutHelper());
+        vIntroduceHeadAdapter = new VIntroduceHeadAdapter(this, new SingleLayoutHelper(),mcarttitlebean);
         adapters.add(vIntroduceHeadAdapter);
 
 
@@ -374,8 +374,24 @@ public class CartDetailActivity extends BaseActivity {
                         mcarttitlebean.is_seckill = storeInfo.optString("is_seckill");
                         mcarttitlebean.is_bargain = storeInfo.optString("is_bargain");
                         mcarttitlebean.is_integral = storeInfo.optString("is_integral");
+                        mcarttitlebean.is_agent = storeInfo.optString("is_agent");
                         mcarttitlebean.ficti = storeInfo.optInt("ficti");
                         mcarttitlebean.browse = storeInfo.optString("browse");
+
+
+
+                        mcarttitlebean.vol = storeInfo.optString("centigrade");//酒精度
+                        mcarttitlebean.pro_address = storeInfo.optString("pro_address");//生产地
+                        mcarttitlebean.pack_nomals = storeInfo.optString("pack_nomals");//包装规格
+                        mcarttitlebean.wine_tech = storeInfo.optString("wine_tech");//酿造工艺
+                        mcarttitlebean.materials = storeInfo.optString("materials");//原料
+                        mcarttitlebean.nw = storeInfo.optString("nw");//净含量
+                        mcarttitlebean.factory = storeInfo.optString("factory");//工厂
+                        mcarttitlebean.name=storeInfo.optString("name");
+                        mcarttitlebean.save_condition = storeInfo.optString("save_condition");//储存方式
+
+
+
                         mcarttitlebean.code_path = storeInfo.optString("code_path");
                         mcarttitlebean.coupon = storeInfo.optString("coupon");
                         mcarttitlebean.userLike = storeInfo.optString("userLike");
@@ -432,7 +448,7 @@ public class CartDetailActivity extends BaseActivity {
 
 
                         buildRecyclerView();
-                        if ("1".equals(mcarttitlebean.is_special)||"1".equals(mcarttitlebean.is_integral)) {
+                        if ("1".equals(mcarttitlebean.is_special)||"1".equals(mcarttitlebean.is_integral)||"1".equals(mcarttitlebean.is_agent)) {
                             togouwu.setVisibility(View.GONE);
                         }
                     }else{
@@ -645,7 +661,7 @@ public InputStream getImageStream(String path) throws Exception {
         topay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ("1".equals(mcarttitlebean.is_special)||"1".equals(mcarttitlebean.is_integral)) {
+                if ("1".equals(mcarttitlebean.is_special)||"1".equals(mcarttitlebean.is_integral)||"1".equals(mcarttitlebean.is_agent)) {
                     productId = mcarttitlebean.id;
                     uniqueId = "0";
                     lijiGouWu();
@@ -784,7 +800,7 @@ public InputStream getImageStream(String path) throws Exception {
                 dialog.dismiss();
             }
         });
-
+        LinearLayout canchosenumber=customView2.findViewById(R.id.canchosenumber);
         TextView dialog_lijigoumai = customView2.findViewById(R.id.dialog_lijigoumai);
         dialog_lijigoumai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -806,8 +822,9 @@ public InputStream getImageStream(String path) throws Exception {
 
             }
         });
-        if ("1".equals(mcarttitlebean.is_special)||"1".equals(mcarttitlebean.is_integral)) {
+        if ("1".equals(mcarttitlebean.is_special)||"1".equals(mcarttitlebean.is_integral)||"1".equals(mcarttitlebean.is_agent)) {
             dialog_gouwuche.setVisibility(View.INVISIBLE);
+            canchosenumber.setVisibility(View.GONE);
         }
         TextView money = customView2.findViewById(R.id.money);
         if(mcartattrlist!=null&&mcartattrlist.size()>0){

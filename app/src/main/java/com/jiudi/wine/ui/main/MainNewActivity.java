@@ -214,7 +214,7 @@ public class MainNewActivity extends BaseActivity {
                 navigationController = tab.custom()
                         .addItem(newItem(R.drawable.shouyehui, R.drawable.shouyehong, "首页"))
                         .addItem(newItem(R.drawable.miaoshahui, R.drawable.miaoshahong, "秒杀"))
-                        .addItem(newRoundItem(R.drawable.dianzhuhui, R.drawable.dianzhuhong, "代理权益"))
+                        .addItem(newRoundItem(R.drawable.kaidianhui, R.drawable.kaidianhong, "代理权益"))
                         .addItem(newItem(R.drawable.gouwuchehui, R.drawable.gouwuchehong, "购物车"))
                         .addItem(newItem(R.drawable.wodehui, R.drawable.wodehong, "我的"))
                         .build();

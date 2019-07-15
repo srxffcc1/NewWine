@@ -16,8 +16,12 @@ import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
 import com.github.nukc.LoadMoreWrapper.LoadMoreAdapter;
 import com.jiudi.wine.R;
 import com.jiudi.wine.adapter.vl.VHotGrid3Adapter;
+import com.jiudi.wine.adapter.vl.VHotLinear3Adapter;
+import com.jiudi.wine.adapter.vl.VHotSingle4Adapter;
+import com.jiudi.wine.adapter.vl.VMineQuanYi2Adapter;
 import com.jiudi.wine.adapter.vl.VMineQuanYiAdapter;
 import com.jiudi.wine.base.BaseActivity;
+import com.jiudi.wine.bean.GuideGodsBean;
 import com.jiudi.wine.bean.MainGodsBean;
 import com.jiudi.wine.manager.RequestManager;
 import com.jiudi.wine.net.RetrofitCallBack;
@@ -45,8 +49,11 @@ public class FenXiaoNo2Activity extends BaseActivity implements View.OnClickList
     final List<DelegateAdapter.Adapter> adapters = new LinkedList<>();
 
     private List<MainGodsBean> mHotVlList = new ArrayList<>();
+    private List<GuideGodsBean> mGuidVlList = new ArrayList<>();
+    private VHotLinear3Adapter vHotLinearAdapter;
+    public VHotSingle4Adapter vHotSingle4Adapter;
     private VHotGrid3Adapter vHotGridAdapter;
-    private VMineQuanYiAdapter vMineQuanYiAdapter;
+    private VMineQuanYi2Adapter vMineQuanYiAdapter;
     private JSONObject jsondata;
     private boolean stoploadmore = false;
     private LoadMoreAdapter mLoadMoreAdapter;
@@ -54,6 +61,7 @@ public class FenXiaoNo2Activity extends BaseActivity implements View.OnClickList
     private int limit = 20;
     private boolean isdianzhu;
     private android.widget.TextView looktitle;
+    private String nolevel;
 
     @Override
     protected int getContentViewId() {
@@ -122,11 +130,17 @@ public class FenXiaoNo2Activity extends BaseActivity implements View.OnClickList
             gridLayoutHelper2.setAutoExpand(false);
             StickyLayoutHelper stickyLayoutHelper = new StickyLayoutHelper();
             stickyLayoutHelper.setStickyStart(true);
-            vMineQuanYiAdapter = new VMineQuanYiAdapter(mActivity,singleLayoutHelper,this,jsondata);
+            vMineQuanYiAdapter = new VMineQuanYi2Adapter(mActivity,singleLayoutHelper,this,jsondata);
             vMineQuanYiAdapter.setIsDianZhu(isdianzhu);
             adapters.add(vMineQuanYiAdapter);
 
-            if(!isdianzhu){
+
+            vHotLinearAdapter = new VHotLinear3Adapter(mActivity, linearLayoutHelper, mGuidVlList);
+            adapters.add(vHotLinearAdapter);
+
+            if(isdianzhu){
+                vHotSingle4Adapter=new VHotSingle4Adapter(mActivity,singleLayoutHelper);
+                adapters.add(vHotSingle4Adapter);
                 vHotGridAdapter = new VHotGrid3Adapter(mActivity, gridLayoutHelper2, mHotVlList);
                 adapters.add(vHotGridAdapter);
             }
@@ -164,79 +178,49 @@ public class FenXiaoNo2Activity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.goup:
 
+                manager.scrollToPositionWithOffset(2, 0);
+                break;
+        }
     }
-    private void getGodsList(final boolean needscroll) {
-        Map<String, String> map = new HashMap<>();
-//        map.put("first", page + "");
-//        map.put("limit", limit + "");
-        RequestManager.mRetrofitManager.createRequest(RetrofitRequestInterface.class).getLoveGodsList(SPUtil.get("head", "").toString(), RequestManager.encryptParams(map)).enqueue(new RetrofitCallBack() {
-            @Override
-            public void onSuccess(String response) {
-
-                try {
-                    JSONObject res = new JSONObject(response);
-                    int code = res.getInt("code");
-                    String info = res.getString("msg");
-                    if (code == 200) {
-                        JSONArray jsonArray = res.getJSONArray("data");
-                        if (jsonArray.length() > 0) {
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                MainGodsBean bean = new MainGodsBean();
-                                bean.id = jsonObject.optString("id");
-                                bean.image = jsonObject.optString("image");
-                                bean.store_name = jsonObject.optString("store_name");
-                                bean.keyword = jsonObject.optString("keyword");
-                                bean.sales = jsonObject.optInt("sales");
-                                bean.stock = jsonObject.optInt("stock");
-                                bean.vip_price = jsonObject.optString("vip_price");
-                                bean.price = jsonObject.optString("price");
-                                bean.unit_name = jsonObject.optString("unit_name");
-                                mHotVlList.add(bean);
-                            }
-                            buildRecycleView(needscroll);
-                        } else {
-//
-                            noMoreData();
-                            buildRecycleView(needscroll);
-                            stoploadmore = true;
-                        }
-
-
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onError(Throwable t) {
-
-            }
-        });
-    }
-
 
     private void getFenXiao() {
         Map<String, String> map = new HashMap<>();
-        RequestManager.mRetrofitManager.createRequest(RetrofitRequestInterface.class).getFenXiao(SPUtil.get("head", "").toString(),RequestManager.encryptParams(map)).enqueue(new RetrofitCallBack() {
-            @Override
-            public void onSuccess(String response) {
-                try {
-                    JSONObject res = new JSONObject(response);
-                    int code = res.getInt("code");
-                    String info = res.getString("msg");
-                    if (code == 200) {
+        if(isdianzhu){
+            RequestManager.mRetrofitManager.createRequest(RetrofitRequestInterface.class).getFenXiao(SPUtil.get("head", "").toString(),RequestManager.encryptParams(map)).enqueue(new RetrofitCallBack() {
+                @Override
+                public void onSuccess(String response) {
+                    try {
+                        JSONObject res = new JSONObject(response);
+                        int code = res.getInt("code");
+                        String info = res.getString("msg");
+                        if (code == 200) {
 
-                        if(isdianzhu){
                             JSONObject data=res.getJSONObject("data");
                             jsondata=data;
-                        }else{
-                            JSONArray data = res.getJSONArray("data");
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject jsonObject = data.getJSONObject(i);
+                            JSONArray promotion_product = data.getJSONArray("list");
+                            for (int i = 0; i < promotion_product.length(); i++) {
+                                JSONObject jsonObject = promotion_product.getJSONObject(i);
+                                MainGodsBean bean = new MainGodsBean();
+                                bean.id = jsonObject.optString("id");
+                                bean.image = jsonObject.optString("image");
+                                bean.store_name = jsonObject.optString("store_name");
+                                bean.keyword = jsonObject.optString("keyword");
+                                bean.sales = jsonObject.optInt("sales");
+                                bean.stock = jsonObject.optInt("stock");
+                                bean.vip_price = jsonObject.optString("price");
+                                bean.price = jsonObject.optString("price");
+                                bean.unit_name = jsonObject.optString("unit_name");
+                                mHotVlList.add(bean);
+                            }
+                            GuideGodsBean guideGodsBean1 = new GuideGodsBean();
+                            nolevel = data.getJSONObject("agent").optString("name");
+
+                            JSONArray list1 = data.getJSONArray("promotion_product");
+                            for (int i = 0; i < list1.length(); i++) {
+                                JSONObject jsonObject = list1.getJSONObject(i);
                                 MainGodsBean bean = new MainGodsBean();
                                 bean.id = jsonObject.optString("id");
                                 bean.image = jsonObject.optString("image");
@@ -247,25 +231,153 @@ public class FenXiaoNo2Activity extends BaseActivity implements View.OnClickList
                                 bean.vip_price = jsonObject.optString("vip_price");
                                 bean.price = jsonObject.optString("price");
                                 bean.unit_name = jsonObject.optString("unit_name");
-                                mHotVlList.add(bean);
+                                guideGodsBean1.listGods.add(bean);
+
                             }
+                            guideGodsBean1.introduce=data.optString("introduce");
+                            if("初级代理".equals(nolevel)){
+                                guideGodsBean1.level="中级代理";
+                                mGuidVlList.add(guideGodsBean1);
+                            }
+                            if("中级代理".equals(nolevel)){
+                                guideGodsBean1.level="高级代理";
+                                mGuidVlList.add(guideGodsBean1);
+                            }
+
+
+
+                            buildRecycleView(false);
+
+                        }else {
+                            Toast.makeText(mActivity,info,Toast.LENGTH_SHORT).show();
                         }
-                        buildRecycleView(false);
 
-                    }else {
-                        Toast.makeText(mActivity,info,Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
 
-            @Override
-            public void onError(Throwable t) {
+                @Override
+                public void onError(Throwable t) {
 
-            }
-        });
+                }
+            });
+
+        }else{
+            RequestManager.mRetrofitManager.createRequest(RetrofitRequestInterface.class).getFenXiao2(SPUtil.get("head", "").toString(),RequestManager.encryptParams(map)).enqueue(new RetrofitCallBack() {
+                @Override
+                public void onSuccess(String response) {
+                    try {
+                        JSONObject res = new JSONObject(response);
+                        int code = res.getInt("code");
+                        String info = res.getString("msg");
+                        if (code == 200) {
+                            JSONObject data=res.getJSONObject("data");
+                            jsondata=data;
+                            GuideGodsBean guideGodsBean1=new GuideGodsBean();
+                            guideGodsBean1.level="初级代理";
+                            JSONArray list1 = data.getJSONArray("list");
+                            for (int i = 0; i < list1.length(); i++) {
+                                    JSONObject jsonObject = list1.getJSONObject(i);
+                                    MainGodsBean bean = new MainGodsBean();
+                                    bean.id = jsonObject.optString("id");
+                                    bean.image = jsonObject.optString("image");
+                                    bean.store_name = jsonObject.optString("store_name");
+                                    bean.keyword = jsonObject.optString("keyword");
+                                    bean.sales = jsonObject.optInt("sales");
+                                    bean.stock = jsonObject.optInt("stock");
+                                    bean.vip_price = jsonObject.optString("vip_price");
+                                    bean.price = jsonObject.optString("price");
+                                    bean.unit_name = jsonObject.optString("unit_name");
+                                    guideGodsBean1.listGods.add(bean);
+
+                                }
+                            GuideGodsBean guideGodsBean2=new GuideGodsBean();
+                            guideGodsBean2.level="中级代理";
+                            JSONArray list2 = data.getJSONArray("list2");
+                            for (int i = 0; i < list2.length(); i++) {
+                                JSONObject jsonObject = list2.getJSONObject(i);
+                                MainGodsBean bean = new MainGodsBean();
+                                bean.id = jsonObject.optString("id");
+                                bean.image = jsonObject.optString("image");
+                                bean.store_name = jsonObject.optString("store_name");
+                                bean.keyword = jsonObject.optString("keyword");
+                                bean.sales = jsonObject.optInt("sales");
+                                bean.stock = jsonObject.optInt("stock");
+                                bean.vip_price = jsonObject.optString("vip_price");
+                                bean.price = jsonObject.optString("price");
+                                bean.unit_name = jsonObject.optString("unit_name");
+                                guideGodsBean2.listGods.add(bean);
+
+                            }
+                            GuideGodsBean guideGodsBean3=new GuideGodsBean();
+                            guideGodsBean3.level="高级代理";
+                            JSONArray list3 = data.getJSONArray("list3");
+                            for (int i = 0; i < list3.length(); i++) {
+                                JSONObject jsonObject = list3.getJSONObject(i);
+                                MainGodsBean bean = new MainGodsBean();
+                                bean.id = jsonObject.optString("id");
+                                bean.image = jsonObject.optString("image");
+                                bean.store_name = jsonObject.optString("store_name");
+                                bean.keyword = jsonObject.optString("keyword");
+                                bean.sales = jsonObject.optInt("sales");
+                                bean.stock = jsonObject.optInt("stock");
+                                bean.vip_price = jsonObject.optString("vip_price");
+                                bean.price = jsonObject.optString("price");
+                                bean.unit_name = jsonObject.optString("unit_name");
+                                guideGodsBean3.listGods.add(bean);
+
+                            }
+                            JSONObject artics=data.getJSONObject("artics");
+
+                            guideGodsBean1.introduce=artics.optString("introduce1");
+//                            guideGodsBean2.introduce=artics.optString("introduce2");
+//                            guideGodsBean3.introduce=artics.optString("introduce3");
+
+
+
+
+
+                            mGuidVlList.add(guideGodsBean1);
+//                            mGuidVlList.add(guideGodsBean2);
+//                            mGuidVlList.add(guideGodsBean3);
+
+//                                JSONArray data = res.getJSONArray("data");
+//                                for (int i = 0; i < data.length(); i++) {
+//                                    JSONObject jsonObject = data.getJSONObject(i);
+//                                    MainGodsBean bean = new MainGodsBean();
+//                                    bean.id = jsonObject.optString("id");
+//                                    bean.image = jsonObject.optString("image");
+//                                    bean.store_name = jsonObject.optString("store_name");
+//                                    bean.keyword = jsonObject.optString("keyword");
+//                                    bean.sales = jsonObject.optInt("sales");
+//                                    bean.stock = jsonObject.optInt("stock");
+//                                    bean.vip_price = jsonObject.optString("vip_price");
+//                                    bean.price = jsonObject.optString("price");
+//                                    bean.unit_name = jsonObject.optString("unit_name");
+//                                    mHotVlList.add(bean);
+//                                }
+
+
+
+                            buildRecycleView(false);
+
+                        }else {
+                            Toast.makeText(mActivity,info,Toast.LENGTH_SHORT).show();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Throwable t) {
+
+                }
+            });
+
+        }
     }
 
 

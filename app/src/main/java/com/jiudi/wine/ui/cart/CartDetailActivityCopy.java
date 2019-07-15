@@ -286,7 +286,7 @@ public class CartDetailActivityCopy extends BaseActivity {
 
         poss[2] = nowindex;
 
-        vIntroduceHeadAdapter = new VIntroduceHeadAdapter(this, new SingleLayoutHelper());
+        vIntroduceHeadAdapter = new VIntroduceHeadAdapter(this, new SingleLayoutHelper(),mcarttitlebean);
         adapters.add(vIntroduceHeadAdapter);
 
 
@@ -794,6 +794,7 @@ public InputStream getImageStream(String path) throws Exception {
             }
         });
 
+        LinearLayout canchosenumber=customView2.findViewById(R.id.canchosenumber);
         TextView dialog_lijigoumai = customView2.findViewById(R.id.dialog_lijigoumai);
         dialog_lijigoumai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -815,9 +816,9 @@ public InputStream getImageStream(String path) throws Exception {
 
             }
         });
-//        if ("1".equals(mcarttitlebean.is_special)||"1".equals(mcarttitlebean.is_integral)) {
-//
-//        }
+        if ("1".equals(mcarttitlebean.is_special)||"1".equals(mcarttitlebean.is_integral)) {
+            canchosenumber.setVisibility(View.GONE);
+        }
         dialog_gouwuche.setVisibility(View.INVISIBLE);
         TextView money = customView2.findViewById(R.id.money);
         if(mcartattrlist!=null&&mcartattrlist.size()>0){

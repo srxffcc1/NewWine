@@ -73,6 +73,7 @@
             android:text="购买数量"
             android:layout_height="match_parent" />
         <LinearLayout
+            android:id="@+id/canchosenumber"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:padding="5dp"

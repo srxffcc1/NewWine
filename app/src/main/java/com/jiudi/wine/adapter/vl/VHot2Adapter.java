@@ -78,18 +78,19 @@ public class VHot2Adapter extends DelegateAdapter.Adapter {
 
 
             Glide.with(context).asGif().load(recommendImgBeans.get(0).pic).apply(optionsgif).into(tagholder.image0);
+//            Glide.with(context).asGif().load(R.drawable.home_g).apply(optionsgif).into(tagholder.image0);
 
+//            Glide.with(context).load(recommendImgBeans.get(1).pic).apply(options).into(new SimpleTarget<Drawable>() {
+//                @Override
+//                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+//                    int swidth= (((BaseActivity)context).px-10);
+//                    int height= (int) ((resource.getIntrinsicHeight()*1.0/resource.getIntrinsicWidth())*swidth);
+//                    tagholder.image1.setLayoutParams(new LinearLayout.LayoutParams(swidth, height));
+//                    tagholder.image1.setImageDrawable(resource);
+////                picture.setImageResource(R.drawable.tmp_gods);
+//                }
+//            });
             Glide.with(context).load(recommendImgBeans.get(1).pic).apply(options).into(new SimpleTarget<Drawable>() {
-                @Override
-                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                    int swidth= (((BaseActivity)context).px-10);
-                    int height= (int) ((resource.getIntrinsicHeight()*1.0/resource.getIntrinsicWidth())*swidth);
-                    tagholder.image1.setLayoutParams(new LinearLayout.LayoutParams(swidth, height));
-                    tagholder.image1.setImageDrawable(resource);
-//                picture.setImageResource(R.drawable.tmp_gods);
-                }
-            });
-            Glide.with(context).load(recommendImgBeans.get(2).pic).apply(options).into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                     int swidth= (((BaseActivity)context).px-40)/3;
@@ -99,7 +100,7 @@ public class VHot2Adapter extends DelegateAdapter.Adapter {
 //                picture.setImageResource(R.drawable.tmp_gods);
                 }
             });
-            Glide.with(context).load(recommendImgBeans.get(3).pic).apply(options).into(new SimpleTarget<Drawable>() {
+            Glide.with(context).load(recommendImgBeans.get(2).pic).apply(options).into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                     int swidth= (((BaseActivity)context).px-40)/3;
@@ -109,7 +110,7 @@ public class VHot2Adapter extends DelegateAdapter.Adapter {
 //                picture.setImageResource(R.drawable.tmp_gods);
                 }
             });
-            Glide.with(context).load(recommendImgBeans.get(4).pic).apply(options).into(new SimpleTarget<Drawable>() {
+            Glide.with(context).load(recommendImgBeans.get(3).pic).apply(options).into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                     int swidth= (((BaseActivity)context).px-40)/3;
@@ -134,25 +135,25 @@ public class VHot2Adapter extends DelegateAdapter.Adapter {
             tagholder.hot1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(1).product_id));
+                    context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(0).product_id));
                 }
             });
             tagholder.hot2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(2).product_id));
+                    context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(1).product_id));
                 }
             });
             tagholder.hot3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(3).product_id));
+                    context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(2).product_id));
                 }
             });
             tagholder.hot4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(4).product_id));
+                    context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(3).product_id));
                 }
             });
 

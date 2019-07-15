@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
+    android:background="@drawable/wine_bg"
     android:gravity="center_horizontal"
     android:paddingTop="@dimen/dp_23"
     android:orientation="vertical"
@@ -56,7 +56,7 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:ems="10"
-                    android:hint="请输入手机号"
+                    android:hint="请输入手机号/用户名"
                     android:singleLine="true"
                     android:paddingLeft="@dimen/dp_10"
                     android:textColor="@color/colorTitle"
@@ -323,16 +323,45 @@
                     android:textColor="#ff585858"
                     android:textSize="14sp"
                     />
-                <TextView
-                    android:id="@+id/passfuwu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:paddingBottom="60dp"
                     android:drawablePadding="5dp"
-                    android:text="注册或登录代表您已阅读并同意《服务条款》"
-                    android:textColor="#ff868686"
-                    android:textSize="12sp"
-                    />
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="注册或登录代表您已阅读并同意"
+                        android:textColor="#ff868686"
+                        android:textSize="12sp"
+                        />
+                    <TextView
+                        android:id="@+id/passfuwu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="《服务条款》"
+                        android:textColor="@color/colorRed"
+                        android:textSize="12sp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="和"
+                        android:textColor="#ff868686"
+                        android:textSize="12sp"
+                        />
+                    <TextView
+                        android:id="@+id/passxieyi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="《用户协议》"
+                        android:textColor="@color/colorRed"
+                        android:textSize="12sp"
+                        />
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

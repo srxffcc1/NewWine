@@ -4,14 +4,10 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:paddingTop="@dimen/dp_23"
-    android:paddingRight="10dp"
-    android:paddingLeft="10dp"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/back"
             android:layout_width="40dp"
@@ -23,6 +19,7 @@
             android:src="@drawable/ic_back" />
     </RelativeLayout>
     <ScrollView
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView

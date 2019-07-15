@@ -54,6 +54,8 @@ public class RegisterActivity extends BaseActivity {
     private LinearLayout ycodeL;
     private EditText ycode;
     private int type=0;//1账号密码注册2验证码登录注册3微信信息绑定
+    private TextView passxieyi;
+    private TextView passfuwu;
 
     @Override
     public boolean isNoNeedLogin() {
@@ -79,9 +81,24 @@ public class RegisterActivity extends BaseActivity {
         register = (TextView) findViewById(R.id.register);
         ycodeL = (LinearLayout) findViewById(R.id.ycode_l);
         ycode = (EditText) findViewById(R.id.ycode);
+        passxieyi = (TextView) findViewById(R.id.passxieyi);
+        passfuwu = (TextView) findViewById(R.id.passfuwu);
     }
     @Override
     public void initEvent() {
+        passxieyi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mActivity,TextActivity.class).putExtra("url",RequestManager.mBaseUrl+"api/Article/visit/id/16"));
+            }
+        });
+        passfuwu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mActivity,TextActivity.class).putExtra("url",RequestManager.mBaseUrl+"api/Article/visit/id/17"));
+
+            }
+        });
         yanzhengmaT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

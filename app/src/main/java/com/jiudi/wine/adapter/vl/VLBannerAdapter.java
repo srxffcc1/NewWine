@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
@@ -53,6 +54,7 @@ public class VLBannerAdapter extends DelegateAdapter.Adapter {
             mBannerUrlList.add(mBannerList.get(i).pic);
             System.out.println("获得的banner:" + mBannerList.get(i).pic);
         }
+        recyclerViewHolder.banner.setCheckscaletype(ImageView.ScaleType.CENTER_CROP);
         if (mBannerUrlList.size() > 0) {
             recyclerViewHolder.banner.setViewUrls(mBannerUrlList);
             recyclerViewHolder.banner.setOnBannerItemClickListener(new BannerLayout.OnBannerItemClickListener() {

@@ -113,6 +113,7 @@ public class PayDingDanActivity extends BaseActivity {
     private Dialog dialogquan;
     private double orgxiaoji;
     private TextView addAdress;
+    private boolean canyuanbao=false;
 
     @Override
     protected int getContentViewId() {
@@ -492,8 +493,9 @@ public class PayDingDanActivity extends BaseActivity {
                         yuetexts = data.getJSONObject("userInfo").getString("integral");
                         xianjint = data.getJSONObject("userInfo").getString("now_money");
                         nowmoneys.setText("可用现金" + xianjint);
-
-
+                        if(data.getInt("integral")==1){
+                            yuecheck.setChecked(true);
+                        }
                     }
 
                 } catch (JSONException e) {

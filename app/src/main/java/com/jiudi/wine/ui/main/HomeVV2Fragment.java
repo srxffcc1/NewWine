@@ -96,39 +96,39 @@ private List<RecommendTabBean> mRecommendTabList = new ArrayList<>();
 
     public void buildTab(){
         mFragments.add(new HomeBVFragment());
-//        for (int i = 1; i <mRecommendTabList.size() ; i++) {
-//            mFragments.add(new HomeCVFragment().setArgumentz("cId",mRecommendTabList.get(i).id+""));
-//        }
-//        titles = new String[mRecommendTabList.size()];
-//        for (int i = 0; i <mRecommendTabList.size() ; i++) {
-//            titles[i]=mRecommendTabList.get(i).cate_name;
-//        }
-//        for (int i = 0; i < mRecommendTabList.size(); i++) {
-//            //插入tab标签
-//            mainTab.addTab(mainTab.newTab().setText(mRecommendTabList.get(i).cate_name));
-//        }
-//        if(mRecommendTabList.size()>4){
-//
-//            mainTab.setTabMode(TabLayout.MODE_SCROLLABLE);
-//        }else{
-//
-//            mainTab.setTabMode(TabLayout.MODE_FIXED);
-//        }
-//        mainTab.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                getFragmentManager().beginTransaction().replace(R.id.fl_change,mFragments.get(tab.getPosition())).commitAllowingStateLoss();
-//            }
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
+        for (int i = 1; i <mRecommendTabList.size() ; i++) {
+            mFragments.add(new HomeCV2Fragment().setArgumentz("cId",mRecommendTabList.get(i).id+""));
+        }
+        titles = new String[mRecommendTabList.size()];
+        for (int i = 0; i <mRecommendTabList.size() ; i++) {
+            titles[i]=mRecommendTabList.get(i).cate_name;
+        }
+        for (int i = 0; i < mRecommendTabList.size(); i++) {
+            //插入tab标签
+            mainTab.addTab(mainTab.newTab().setText(mRecommendTabList.get(i).cate_name));
+        }
+        if(mRecommendTabList.size()>4){
+
+            mainTab.setTabMode(TabLayout.MODE_SCROLLABLE);
+        }else{
+
+            mainTab.setTabMode(TabLayout.MODE_FIXED);
+        }
+        mainTab.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                getFragmentManager().beginTransaction().replace(R.id.fl_change,mFragments.get(tab.getPosition())).commitAllowingStateLoss();
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         getFragmentManager().beginTransaction().replace(R.id.fl_change,mFragments.get(0)).commitAllowingStateLoss();
     }
 

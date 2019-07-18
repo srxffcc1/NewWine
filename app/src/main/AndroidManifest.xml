@@ -78,6 +78,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
@@ -205,6 +206,8 @@
         <activity android:name="com.jiudi.wine.ui.user.account.WorkEachActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity android:name=".ui.user.WebActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        <activity android:name=".ui.main.KanJiaListActivity" />
+        <activity android:name=".ui.main.KanJiaActivity" />
 
 
         <service android:name="com.jiudi.wine.ShopPushService"

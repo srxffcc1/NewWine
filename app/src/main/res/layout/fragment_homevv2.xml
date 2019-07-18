@@ -39,7 +39,6 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/main_tab"
-        android:visibility="gone"
         android:background="@color/colorWhite"
         android:layout_width="match_parent"
         app:tabSelectedTextColor="#e40707"

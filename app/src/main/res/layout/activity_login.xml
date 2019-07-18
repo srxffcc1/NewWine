@@ -256,13 +256,44 @@
                     android:layout_width="match_parent"
                     android:visibility="gone"
                     android:layout_height="10dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="注册或登录代表您已阅读并同意《服务条款》"
-                    android:textColor="#ff7f7f7f"
-                    android:textSize="11sp"
-                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="注册或登录代表您已阅读并同意"
+                        android:textColor="#ff868686"
+                        android:textSize="11sp"
+                        />
+                    <TextView
+                        android:id="@+id/passfuwu2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="《服务条款》"
+                        android:textColor="@color/colorRed"
+                        android:textSize="11sp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="和"
+                        android:textColor="#ff868686"
+                        android:textSize="11sp"
+                        />
+                    <TextView
+                        android:id="@+id/passxieyi2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="《用户协议》"
+                        android:textColor="@color/colorRed"
+                        android:textSize="11sp"
+                        />
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="5dp" />
@@ -327,6 +358,7 @@
                     android:layout_width="match_parent"
                     android:paddingBottom="60dp"
                     android:drawablePadding="5dp"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:layout_height="wrap_content">
                     <TextView

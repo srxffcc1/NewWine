@@ -148,7 +148,7 @@ public class TiXianActivity extends BaseActivity {
 
             @Override
             public void onError(Throwable t) {
-
+                Toast.makeText(mActivity,"后台出错",Toast.LENGTH_SHORT).show();
             }
         });
     }

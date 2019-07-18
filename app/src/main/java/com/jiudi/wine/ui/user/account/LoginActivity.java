@@ -74,6 +74,8 @@ public class LoginActivity extends BaseActivity {
     private TextView changepass;
     private TextView passfuwu;
     private TextView passxieyi;
+    private TextView passfuwu2;
+    private TextView passxieyi2;
 
 
     @Override
@@ -112,6 +114,8 @@ public class LoginActivity extends BaseActivity {
         changepass = (TextView) findViewById(R.id.changepass);
         passfuwu = (TextView) findViewById(R.id.passfuwu);
         passxieyi = (TextView) findViewById(R.id.passxieyi);
+        passfuwu2 = (TextView) findViewById(R.id.passfuwu2);
+        passxieyi2 = (TextView) findViewById(R.id.passxieyi2);
     }
 
     @Override
@@ -164,6 +168,19 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
+        passxieyi2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mActivity, TextActivity.class).putExtra("url", RequestManager.mBaseUrl + "api/Article/visit/id/16"));
+            }
+        });
+        passfuwu2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mActivity, TextActivity.class).putExtra("url", RequestManager.mBaseUrl + "api/Article/visit/id/17"));
+
+            }
+        });
         passxieyi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

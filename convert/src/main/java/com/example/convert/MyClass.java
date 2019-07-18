@@ -5,35 +5,13 @@ import java.util.regex.Pattern;
 
 public class MyClass {
     public static void main(String[] args) {
-        String org="\"id\": 1,\n" +
-                "            \"product_id\": 1,\n" +
-                "            \"image\": \"http://datong.crmeb.net/public/uploads/attach/2019/01/15/5c3dba1366885.jpg\",\n" +
-                "            \"images\": [\n" +
-                "                \"http://datong.crmeb.net/public/uploads/attach/2019/01/15/5c3dba1366885.jpg\",\n" +
-                "                \"http://datong.crmeb.net/public/uploads/attach/2019/01/15/5c3dba4187461.jpg\",\n" +
-                "                \"http://datong.crmeb.net/public/uploads/attach/2019/01/15/5c3db9de2b73a.jpg\"\n" +
-                "            ],\n" +
-                "            \"title\": \"手慢无 无线吸尘器F8 玫瑰金礼盒版\",\n" +
-                "            \"info\": \"【年货节活动价1699元，领取吸尘器优惠券再减50元，到手价仅1649元】\",\n" +
-                "            \"price\": \"1.00\",\n" +
-                "            \"cost\": \"100.00\",\n" +
-                "            \"ot_price\": \"599.00\",\n" +
-                "            \"give_integral\": \"1699.00\",\n" +
-                "            \"sort\": 1,\n" +
-                "            \"stock\": 987,\n" +
-                "            \"sales\": 13,\n" +
-                "            \"unit_name\": \"件\",\n" +
-                "            \"postage\": \"0.00\",\n" +
-                "            \"description\": \"\",\n" +
-                "            \"start_time\": \"1546272000\",\n" +
-                "            \"stop_time\": \"1551283200\",\n" +
-                "            \"add_time\": \"1547554098\",\n" +
-                "            \"status\": 1,\n" +
-                "            \"is_postage\": 1,\n" +
-                "            \"is_hot\": 1,\n" +
-                "            \"is_del\": 0,\n" +
-                "            \"num\": 1,\n" +
-                "            \"is_show\": 1";
+        String org="          \"id\": 3,\n" +
+                "          \"product_id\": 511,\n" +
+                "          \"title\": \"\\u780d\\u5230\\u4f60\\u5fc3\\u614c\",\n" +
+                "          \"price\": \"100.00\",\n" +
+                "          \"min_price\": \"0.00\",\n" +
+                "          \"stop_time\": 1564502400,\n" +
+                "          \"image\": \"http:\\/\\/wine.jiudicar.com\\/public\\/uploads\\/attach\\/2019\\/07\\/10\\/5d25955eebd92.jpg\"";
         //parm参数
         Pattern pattern=null;
         Matcher matcher=null;

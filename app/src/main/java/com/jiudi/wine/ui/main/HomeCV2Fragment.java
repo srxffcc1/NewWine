@@ -20,13 +20,12 @@ import com.github.nukc.LoadMoreWrapper.LoadMoreWrapper;
 import com.jiudi.wine.R;
 import com.jiudi.wine.adapter.vl.VBGifAdapter;
 import com.jiudi.wine.adapter.vl.VHot2Adapter;
-import com.jiudi.wine.adapter.vl.VHotGrid2Adapter;
+import com.jiudi.wine.adapter.vl.VHotGridAdapter;
 import com.jiudi.wine.adapter.vl.VHotHead2Adapter;
 import com.jiudi.wine.adapter.vl.VHotHeadAdapter;
 import com.jiudi.wine.adapter.vl.VHotSingle2Adapter;
 import com.jiudi.wine.adapter.vl.VHotTabAdapter;
 import com.jiudi.wine.adapter.vl.VLBannerAdapter;
-import com.jiudi.wine.adapter.vl.VQuiltyHead2Adapter;
 import com.jiudi.wine.adapter.vl.VQuiltyHeadAdapter;
 import com.jiudi.wine.adapter.vl.VRecommendAdapter;
 import com.jiudi.wine.base.BaseFragment;
@@ -57,7 +56,7 @@ import java.util.Map;
 /**
  * 主页
  */
-public class HomeBVFragment extends BaseFragment implements View.OnClickListener, LoadMoreAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, VHotTabAdapter.TabSelectedListener {
+public class HomeCV2Fragment extends BaseFragment implements View.OnClickListener, LoadMoreAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, VHotTabAdapter.TabSelectedListener {
 
 
     private ImageView back;
@@ -85,18 +84,18 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
     private int page = 0;
     private int limit = 20;
     private boolean stoploadmore = false;
-    private android.support.v4.widget.SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private String ccid;
     private VLBannerAdapter vlBannerAdapter;
-    private VQuiltyHead2Adapter vQuiltyHeadAdapter;
+    private VQuiltyHeadAdapter vQuiltyHeadAdapter;
     private VRecommendAdapter vRecommendAdapter;
     private VHotHeadAdapter vHotHeadAdapter;
     private VHot2Adapter vHotAdapter;
     private VHotHead2Adapter vHotHead2Adapter;
     private VHotTabAdapter vHotTabAdapter;
-    private VHotGrid2Adapter vHotGridAdapter;
+    private VHotGridAdapter vHotGridAdapter;
     private VHotSingle2Adapter vHotSingleAdapter;
-    private android.widget.LinearLayout searchTagl;
+    private LinearLayout searchTagl;
     int nowindex = 0;
     private VBGifAdapter vbGifAdapter;
     private android.support.design.widget.TabLayout mainTab;
@@ -173,7 +172,7 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
             });
             gridLayoutHelper.setAutoExpand(false);
 
-            GridLayoutHelper gridLayoutHelper2 = new GridLayoutHelper(1);
+            GridLayoutHelper gridLayoutHelper2 = new GridLayoutHelper(2);
             gridLayoutHelper2.setSpanSizeLookup(new GridLayoutHelper.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
@@ -200,9 +199,9 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
 //            adapters.add(vbGifAdapter);
 //            nowindex += vbGifAdapter.getItemCount();
 
-            vQuiltyHeadAdapter = new VQuiltyHead2Adapter(mActivity, singleLayoutHelper, mRecommendtitle);
-            adapters.add(vQuiltyHeadAdapter);
-            nowindex += vQuiltyHeadAdapter.getItemCount();
+//            vQuiltyHeadAdapter = new VQuiltyHeadAdapter(mActivity, singleLayoutHelper, mRecommendtitle);
+//            adapters.add(vQuiltyHeadAdapter);
+//            nowindex += vQuiltyHeadAdapter.getItemCount();
 //
 //            vRecommendAdapter = new VRecommendAdapter(mActivity, gridLayoutHelper, mRecommendList);
 //            adapters.add(vRecommendAdapter);
@@ -212,23 +211,23 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
 //            adapters.add(vHotHeadAdapter);
 //            nowindex += vHotHeadAdapter.getItemCount();
 
-            vHotAdapter = new VHot2Adapter(mActivity, singleLayoutHelper, mRecommendImgList);
-            adapters.add(vHotAdapter);
-            nowindex += vHotAdapter.getItemCount();
+//            vHotAdapter = new VHot2Adapter(mActivity, singleLayoutHelper, mRecommendImgList);
+//            adapters.add(vHotAdapter);
+//            nowindex += vHotAdapter.getItemCount();
 
-            vHotHead2Adapter = new VHotHead2Adapter(mActivity, singleLayoutHelper);
-            adapters.add(vHotHead2Adapter);
-            nowindex += vHotHead2Adapter.getItemCount();
+//            vHotHead2Adapter = new VHotHead2Adapter(mActivity, singleLayoutHelper);
+//            adapters.add(vHotHead2Adapter);
+//            nowindex += vHotHead2Adapter.getItemCount();
 
-            vHotSingleAdapter = new VHotSingle2Adapter(mActivity, singleLayoutHelper, mHotRecommendList);
-            adapters.add(vHotSingleAdapter);
-            nowindex += vHotSingleAdapter.getItemCount();
+//            vHotSingleAdapter = new VHotSingle2Adapter(mActivity, singleLayoutHelper, mHotRecommendList);
+//            adapters.add(vHotSingleAdapter);
+//            nowindex += vHotSingleAdapter.getItemCount();
 
 //            vHotTabAdapter = new VHotTabAdapter(mActivity, stickyLayoutHelper, mRecommendTabList, this);
 //            adapters.add(vHotTabAdapter);
 //            nowindex += vHotTabAdapter.getItemCount();
 
-            vHotGridAdapter = new VHotGrid2Adapter(mActivity, gridLayoutHelper2, mHotVlList);
+            vHotGridAdapter = new VHotGridAdapter(mActivity, gridLayoutHelper2, mHotVlList);
             adapters.add(vHotGridAdapter);
 
 
@@ -255,7 +254,8 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
     private void getHomeBanner() {
         System.out.println("OOPO");
         Map<String, String> map = new HashMap<>();
-        RequestManager.mRetrofitManager.createRequest(RetrofitRequestInterface.class).getFlash(SPUtil.get("head", "").toString(), RequestManager.encryptParams(map)).enqueue(new RetrofitCallBack() {
+        map.put("cId", getArguments().getString("cId"));
+        RequestManager.mRetrofitManager.createRequest(RetrofitRequestInterface.class).getTypeRecommend(SPUtil.get("head", "").toString(), RequestManager.encryptParams(map)).enqueue(new RetrofitCallBack() {
             @Override
             public void onSuccess(String response) {
                 try {
@@ -271,68 +271,63 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
                             BannerBean bean = new BannerBean();
                             bean.id = jsonObject.optString("id");
                             bean.title = jsonObject.optString("title");
-                            bean.url = jsonObject.optString("url");
-                            bean.pic = jsonObject.optString("pic");
+                            bean.url = jsonObject.optString("image_input");
+                            bean.pic = jsonObject.optString("image_input");
                             mBannerList.add(bean);
                         }
-                        JSONArray category_recommend = data.getJSONArray("category_recommend");
+                        JSONArray category_recommend = data.getJSONArray("category");
                         for (int i = 0; i < category_recommend.length(); i++) {
                             JSONObject jsonObject = category_recommend.getJSONObject(i);
                             RecommendBean bean = new RecommendBean();
-                            bean.id = jsonObject.optString("id");
-                            bean.name = jsonObject.optString("name");
+                            bean.name = jsonObject.optString("cate_name");
                             bean.pic = jsonObject.optString("pic");
-                            bean.cid = jsonObject.optString("cid");
-                            bean.id = jsonObject.optString("id");
-                            bean.name = jsonObject.optString("name");
-                            bean.pic = jsonObject.optString("pic");
-                            bean.cid = jsonObject.optString("cid");
+                            bean.cid = jsonObject.optString("id");
                             mRecommendList.add(bean);
                         }
-                        JSONArray store_product = data.getJSONArray("store_product");
-                        for (int i = 0; i < store_product.length(); i++) {
-                            JSONObject jsonObject = store_product.getJSONObject(i);
-                            RecommendImgBean bean = new RecommendImgBean();
-                            bean.id = jsonObject.optString("id");
-                            bean.title = jsonObject.optString("title");
-                            bean.pic = jsonObject.optString("pic");
-                            bean.url = jsonObject.optString("url");
-                            bean.product_id = jsonObject.optString("product_id");
-                            mRecommendImgList.add(bean);
-                        }
+//                        JSONArray store_product = data.getJSONArray("store_product");
+//                        for (int i = 0; i < store_product.length(); i++) {
+//                            JSONObject jsonObject = store_product.getJSONObject(i);
+//                            RecommendImgBean bean = new RecommendImgBean();
+//                            bean.id = jsonObject.optString("id");
+//                            bean.title = jsonObject.optString("title");
+//                            bean.pic = jsonObject.optString("pic");
+//                            bean.url = jsonObject.optString("url");
+//                            bean.product_id = jsonObject.optString("product_id");
+//                            mRecommendImgList.add(bean);
+//                        }
 
-                        JSONArray category = data.getJSONArray("category");
-                        RecommendTabBean hotbean = new RecommendTabBean();
-                        hotbean.id = "0";
-                        hotbean.cate_name = "推荐";
-                        mRecommendTabList.add(hotbean);
-                        for (int i = 0; i < category.length(); i++) {
-                            JSONObject jsonObject = category.getJSONObject(i);
-                            RecommendTabBean bean = new RecommendTabBean();
-                            bean.id = jsonObject.optString("id");
-                            bean.cate_name = jsonObject.optString("cate_name");
-                            mRecommendTabList.add(bean);
-                        }
+//                        JSONArray category = data.getJSONArray("category");
+//                        RecommendTabBean hotbean = new RecommendTabBean();
+//                        hotbean.id = "0";
+//                        hotbean.cate_name = "推荐";
+//                        mRecommendTabList.add(hotbean);
+//                        for (int i = 0; i < category.length(); i++) {
+//                            JSONObject jsonObject = category.getJSONObject(i);
+//                            RecommendTabBean bean = new RecommendTabBean();
+//                            bean.id = jsonObject.optString("id");
+//                            bean.cate_name = jsonObject.optString("cate_name");
+//                            mRecommendTabList.add(bean);
+//                        }
 
-                        JSONArray store_hot = data.getJSONArray("store_hot");
-                        System.out.println(store_hot.toString());
-                        for (int i = 0; i < store_hot.length(); i++) {
-                            JSONObject jsonObject = store_hot.getJSONObject(i);
-                            RecommendHotBean bean = new RecommendHotBean();
-                            bean.id = jsonObject.optString("id");
-                            bean.title = jsonObject.optString("title");
-                            bean.pic = jsonObject.optString("pic");
-                            bean.url = jsonObject.optString("url");
-                            bean.product_id = jsonObject.optString("product_id");
-                            bean.price = jsonObject.optString("price");
-                            bean.vip_price = jsonObject.optString("vip_price");
+//                        JSONArray store_hot = data.getJSONArray("store_hot");
+//                        System.out.println(store_hot.toString());
+//                        for (int i = 0; i < store_hot.length(); i++) {
+//                            JSONObject jsonObject = store_hot.getJSONObject(i);
+//                            RecommendHotBean bean = new RecommendHotBean();
+//                            bean.id = jsonObject.optString("id");
+//                            bean.title = jsonObject.optString("title");
+//                            bean.pic = jsonObject.optString("pic");
+//                            bean.url = jsonObject.optString("url");
+//                            bean.product_id = jsonObject.optString("product_id");
+//                            bean.price = jsonObject.optString("price");
+//                            bean.vip_price = jsonObject.optString("vip_price");
+////                            mHotRecommendList.add(bean);
+////                            mHotRecommendList.add(bean);
 //                            mHotRecommendList.add(bean);
-//                            mHotRecommendList.add(bean);
-                            mHotRecommendList.add(bean);
-                        }
+//                        }
 
 //                        buildRecycleView();
-                        ccid = "0";
+                        ccid = getArguments().getString("cId");
                         getGodsList(false);
 
                     }
@@ -375,10 +370,10 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 MainGodsBean bean = new MainGodsBean();
                                 bean.id = jsonObject.optString("id");
-                                bean.image = jsonObject.optString("transverse_image");
+                                bean.image = jsonObject.optString("image");
                                 bean.store_name = jsonObject.optString("store_name");
                                 bean.keyword = jsonObject.optString("keyword");
-                                bean.sales = jsonObject.optInt("sales")+jsonObject.optInt("ficti");
+                                bean.sales = jsonObject.optInt("sales");
                                 bean.stock = jsonObject.optInt("stock");
                                 bean.vip_price = jsonObject.optString("vip_price");
                                 bean.price = jsonObject.optString("price");
@@ -428,13 +423,13 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
         getGodsList(false);
     }
 
-//    private boolean resetRefreshing() {
-//        if (swipeRefreshLayout.isRefreshing()) {
-//            swipeRefreshLayout.setRefreshing(false);
-//            return true;
-//        }
-//        return false;
-//    }
+    private boolean resetRefreshing() {
+        if (swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+            return true;
+        }
+        return false;
+    }
 
     public void noMoreData() {
         if (mLoadMoreAdapter != null) {

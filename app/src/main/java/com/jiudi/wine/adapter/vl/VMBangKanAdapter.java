@@ -2,6 +2,7 @@ package com.jiudi.wine.adapter.vl;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
@@ -21,7 +23,12 @@ import com.bumptech.glide.request.RequestOptions;
 import com.jiudi.wine.R;
 import com.jiudi.wine.bean.CartAttrValue;
 import com.jiudi.wine.manager.AccountManager;
+import com.jiudi.wine.manager.RequestManager;
+import com.jiudi.wine.net.RetrofitCallBack;
+import com.jiudi.wine.net.RetrofitRequestInterface;
+import com.jiudi.wine.ui.cart.PayDingDanActivity;
 import com.jiudi.wine.util.DateTimeUtil;
+import com.jiudi.wine.util.SPUtil;
 import com.jiudi.wine.util.TimeUtil;
 import com.jiudi.wine.util.WechatUtil;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
@@ -36,7 +43,9 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -49,6 +58,11 @@ public class VMBangKanAdapter extends DelegateAdapter.Adapter {
     private LayoutHelper helper;
     private View.OnClickListener listener;
     private boolean isdianzhu;
+
+    public void setJsondata(JSONObject jsondata) {
+        this.jsondata = jsondata;
+    }
+
     private JSONObject jsondata;
     private static final int REQUEST_CODE_PERMISSION_WRITE_STORAGE = 1001;
     private static final int REQUEST_CODE_UNKNOWN_APP = 100;
@@ -118,9 +132,15 @@ public class VMBangKanAdapter extends DelegateAdapter.Adapter {
         passKan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), R.mipmap.logo);
-                byte[] tumb=bmpToByteArray(bmp,true);
-                WechatUtil.wechatShare(urlshare,"帮我砍个价","我在同城快酒上发现意外好货，一起来砍价低至"+ finalMinp +"元拿",tumb, SendMessageToWX.Req.WXSceneSession);
+                if(getpricePercent() ==100){
+
+
+                    orderKan(getKanId(),getProductId());
+
+                }else {
+                    Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), R.mipmap.logo);
+                    byte[] tumb=bmpToByteArray(bmp,true);
+                    WechatUtil.wechatShare(urlshare,"帮我砍个价","我在同城快酒上发现意外好货，一起来砍价低至"+ finalMinp +"元拿",tumb, SendMessageToWX.Req.WXSceneSession);
 //                new ShareAction(context).setDisplayList(
 //                        SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE)
 //                        .setShareboardclickCallback(new ShareBoardlistener() {
@@ -137,11 +157,43 @@ public class VMBangKanAdapter extends DelegateAdapter.Adapter {
 //                                }
 //                            }
 //                        }).open();
+                }
+
             }
         });
-        addBang.removeAllViews();
         bindDataToView(jsondata,false);
 
+    }
+
+    private String getProductId() {
+        String result="";
+        try {
+            result=jsondata.getJSONObject("bargain").getString("product_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private String getKanId() {
+        String result="";
+        try {
+            result=jsondata.getJSONObject("bargain").getString("id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private int getpricePercent(){
+        int pricePercent=0;
+        try {
+            pricePercent=Integer.parseInt(jsondata.getString("pricePercent"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return pricePercent;
     }
     public void buildListView(JSONObject bean) {
         View view = LayoutInflater.from(context).inflate(R.layout.activity_kill_detail_up_item, addBang, false);
@@ -169,10 +221,11 @@ public class VMBangKanAdapter extends DelegateAdapter.Adapter {
         try {
             avater = bean.getString("avater");
         } catch (JSONException e) {
-            e.printStackTrace();
         }
         Glide.with(context).load((avater.startsWith("http")) ? avater : "http://" + avater).apply(requestOptions).into(bkImage);
-
+        if(getpricePercent()==100){
+            passKan.setText("立即购买");
+        }
         addBang.addView(view);
 
     }
@@ -199,6 +252,8 @@ public class VMBangKanAdapter extends DelegateAdapter.Adapter {
     }
 
     public void bindDataToView(final JSONObject data, boolean need) {
+
+        addBang.removeAllViews();
         try {
 
 
@@ -260,6 +315,40 @@ public class VMBangKanAdapter extends DelegateAdapter.Adapter {
 
 
     }
+
+
+    private void orderKan(String bargainId,String productId) {
+        Map<String, String> map = new HashMap<>();
+        map.put("bargainId",bargainId);
+        map.put("cartNum", "1");
+        map.put("productId", productId);
+        RequestManager.mRetrofitManager.createRequest(RetrofitRequestInterface.class).orderKan(SPUtil.get("head", "").toString(),RequestManager.encryptParams(map)).enqueue(new RetrofitCallBack() {
+            @Override
+            public void onSuccess(String response) {
+                try {
+                    JSONObject res = new JSONObject(response);
+                    int code = res.getInt("code");
+                    String info = res.getString("msg");
+                    if (code == 200) {
+                        String cartId = res.getJSONObject("data").getString("cartId");
+                        context.startActivity(new Intent(context, PayDingDanActivity.class).putExtra("cartId", cartId));
+                    }else{
+                        Toast.makeText(context,info,Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+
+                Toast.makeText(context,"未登录",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     public void setIsDianZhu(boolean isdianzhu) {
         this.isdianzhu = isdianzhu;

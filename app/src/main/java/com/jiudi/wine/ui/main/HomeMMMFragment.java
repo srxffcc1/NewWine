@@ -121,9 +121,14 @@ public class HomeMMMFragment extends BaseFragment implements View.OnClickListene
             timetextneedshow.setVisibility(View.GONE);
             qinggousectitle.setText("请查看其他场次抢购");
         }
-
         getMiaoList();
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     public void startTimer(){
@@ -212,6 +217,7 @@ public class HomeMMMFragment extends BaseFragment implements View.OnClickListene
 
         } else {
             try {
+//                adapter.notifyDataSetChanged();
                 vMiaoShaAdapter.notifyDataSetChanged();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -221,7 +227,6 @@ public class HomeMMMFragment extends BaseFragment implements View.OnClickListene
 
     }
     private void getMiaoList() {
-
         Map<String, String> map = new HashMap<>();
         map.put("week",getArguments().getString("week"));
         RequestManager.mRetrofitManager.createRequest(RetrofitRequestInterface.class).getSeckill(SPUtil.get("head", "").toString(),RequestManager.encryptParams(map)).enqueue(new RetrofitCallBack() {
@@ -236,6 +241,7 @@ public class HomeMMMFragment extends BaseFragment implements View.OnClickListene
                         if(data.length()<1){
                             findViewById(R.id.needshowgg).setVisibility(View.VISIBLE);
                         }
+                        mmiaoshalist.clear();
                         for (int i = 0; i <data.length() ; i++) {
                             JSONObject jsonObject=data.getJSONObject(i);
                             GodMiaoSha bean=new GodMiaoSha();
@@ -268,7 +274,7 @@ public class HomeMMMFragment extends BaseFragment implements View.OnClickListene
                         }
                         buildRecycleView();
                     }else{
-                        Toast.makeText(mActivity,info,Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(mActivity,info,Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {

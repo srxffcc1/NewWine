@@ -16,7 +16,7 @@ public class RequestManager {
     public static RetrofitManager mRetrofitManager;
 //    public static RetrofitManager mRetrofitManager2;
 //    public static RetrofitManager mRetrofitManager3;
-    public static final String mBaseUrl = "http://test.jiudicar.com/";
+    public static final String mBaseUrl = "http://wine.jiudicar.com/";
 //    public static final String mBaseUrl2 = "http://wine.jiudicar.com/";
 //    public static final String mBaseUrl3 = "http://wine.jiudi.cn/";
 //    public static final String mBaseUrl3 = "http://wine.jiudi.cn/";

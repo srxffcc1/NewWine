@@ -409,7 +409,7 @@ public class PayDingDanActivity extends BaseActivity {
                     String info = res.getString("msg");
                     if (code == 200) {
                         if (mPayMethod == TYPE_PAY_WECHAT) {
-                            if (yuecheck.isChecked()&& !res.getJSONObject("data").getJSONObject("result").has("jsConfig")) {//说明有余额
+                            if (!res.getJSONObject("data").getJSONObject("result").has("jsConfig")) {//说明成功但是不用付钱
                                 Toast.makeText(mActivity, info, Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(mActivity, AllOrderActivity.class));
                                 finish();

@@ -93,7 +93,8 @@ public class MainNewActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        autoLogin(true);
+//        autoLogin(true);
+        buildView(true);
     }
 
     private void autoLogin(final boolean needreset) {
@@ -245,11 +246,19 @@ public class MainNewActivity extends BaseActivity {
                     if (index != 2) {
                         oldindex = index;
 //                        System.out.println("修改老式index:"+oldindex);
+                        if(index!=0){
+                            if (AccountManager.sUserBean == null) {
+
+                                startActivity(new Intent(mActivity, LoginActivity.class));
+//                                finish();
+                            }
+                        }
                     } else {
                         try {
                             if (AccountManager.sUserBean == null) {
-
-                                Toast.makeText(mActivity, "请登录", Toast.LENGTH_SHORT).show();
+                                oldindex = index;
+                                startActivity(new Intent(mActivity, LoginActivity.class));
+//                                Toast.makeText(mActivity, "请登录", Toast.LENGTH_SHORT).show();
                                 return;
                             }
                             if ("1".equals((AccountManager.sUserBean == null ? "0" : AccountManager.sUserBean.is_promoter))) {
@@ -328,8 +337,6 @@ public class MainNewActivity extends BaseActivity {
                     startActivity(new Intent(mActivity, RegisterActivity.class).putExtra("type","3"));
                 }
             }
-
-
         }
     }
 
@@ -366,7 +373,10 @@ public class MainNewActivity extends BaseActivity {
         isForeground = true;
         super.onResume();
         if (AccountManager.sUserBean == null) {
-            finish();
+//            finish();
+            if(oldindex!=0){
+                navigationController.setSelect(0);
+            }
         } else {
             autoLogin(false);
         }

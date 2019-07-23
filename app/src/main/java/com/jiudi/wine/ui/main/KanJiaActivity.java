@@ -1,10 +1,15 @@
 package com.jiudi.wine.ui.main;
 
+import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
@@ -12,6 +17,11 @@ import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.github.nukc.LoadMoreWrapper.LoadMoreAdapter;
 import com.github.nukc.LoadMoreWrapper.LoadMoreWrapper;
 import com.jiudi.wine.R;
@@ -39,6 +49,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +72,7 @@ public class KanJiaActivity extends BaseActivity implements View.OnClickListener
     private int page = 0;
     private int limit = 20;
     private boolean stoploadmore = false;
+    private boolean isshow=false;
 
 
     @Override
@@ -80,6 +92,8 @@ public class KanJiaActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void initData() {
         getDetail();
+
+
     }
 
 
@@ -143,6 +157,8 @@ public class KanJiaActivity extends BaseActivity implements View.OnClickListener
                     .into(recycler);
         } else {
             try {
+                vmBangKanAdapter.setJsondata(bangkanjson);
+                vmBangKanAdapter.bindDataToView(bangkanjson,false);
                 vHotGridAdapter.notifyDataSetChanged();
                 if (needscroll) {
                 }
@@ -173,6 +189,22 @@ public class KanJiaActivity extends BaseActivity implements View.OnClickListener
                     if (code == 200) {
                         JSONObject data=res.getJSONObject("data");
                         bangkanjson=data;
+                        JSONObject userHelpList = data.getJSONObject("userHelpList");
+                        Iterator iterator = userHelpList.keys();
+                        double klj=0;
+                        while (iterator.hasNext()) {
+                            String key = iterator.next() + "";
+                            klj+=userHelpList.getJSONObject(key).getDouble("price");
+                        }
+                        if(!isshow){
+                            if(getIntent().getBooleanExtra("islike",false)){
+
+                                Toast.makeText(mActivity,"恭喜您砍了"+klj+"元"+",可继续邀请好友帮你砍价",Toast.LENGTH_LONG).show();
+                            }else {
+                                Toast.makeText(mActivity,"恭喜您已经砍了"+klj+"元"+",可继续邀请好友帮你砍价",Toast.LENGTH_LONG).show();
+                            }
+                            isshow=true;
+                        }
 
                         getGodsList(false);
                     }
@@ -187,6 +219,14 @@ public class KanJiaActivity extends BaseActivity implements View.OnClickListener
 
             }
         });
+        if(!isFinishing()){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getDetail();
+                }
+            },10000);
+        }
     }
     private void getGodsList(final boolean needscroll) {
         Map<String, String> map = new HashMap<>();
@@ -253,9 +293,10 @@ public class KanJiaActivity extends BaseActivity implements View.OnClickListener
     }
     @Override
     public void onRefresh() {
-//        stoploadmore = false;
-//        page = 0;
-//        mHotVlList.clear();
+        stoploadmore = false;
+        page = 0;
+        mHotVlList.clear();
+        getDetail();
         swipeRefreshLayout.setRefreshing(false);
     }
 

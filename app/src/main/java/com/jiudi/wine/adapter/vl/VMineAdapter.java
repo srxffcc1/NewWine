@@ -378,7 +378,7 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
                 mylessmoneyvalue.setText(AccountManager.sUserBean.now_money);
                 dianzhuquanyi2.setText("代理权益");
                 actContent.setText(AccountManager.sUserBean.remind);
-                actGo.setText("立即领取");
+                actGo.setText("立即邀请");
             } else {
                 mylessmoneyvalue.setText("加入即享");
                 dianzhuquanyi2.setText("升级代理");

@@ -63,6 +63,11 @@ public interface RetrofitRequestInterface {
     Call<String> getCanPhonePay(@FieldMap Map<String, String> params);
 
 
+    /*砍价下单*/
+    @FormUrlEncoded
+    @POST("api/auth_api/now_buy")
+    Call<String> orderKan(@Header("Authorization") String auth,@FieldMap Map<String, String> params);
+
     /*获得砍价详情*/
     @FormUrlEncoded
     @POST("api/store/cut_con")

@@ -122,7 +122,7 @@ public class SplashActivity extends BaseActivity {
             Log.v("Head",SPUtil.get("head", "").toString());
             autoLogin(true);
         } else {
-            startActivity(new Intent(mActivity, LoginActivity.class));
+            startActivity(new Intent(mActivity, MainNewActivity.class));
             finish();
         }
     }
@@ -189,19 +189,19 @@ public class SplashActivity extends BaseActivity {
                             finish();
                         }else{
                             AccountManager.sUserBean=null;
-                            startActivity(new Intent(mActivity, LoginActivity.class));
+                            startActivity(new Intent(mActivity, MainNewActivity.class));
                             finish();
                         }
                     }else{
                         AccountManager.sUserBean=null;
-                        startActivity(new Intent(mActivity, LoginActivity.class));
+                        startActivity(new Intent(mActivity, MainNewActivity.class));
                         finish();
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                     AccountManager.sUserBean=null;
-                    startActivity(new Intent(mActivity, LoginActivity.class));
+                    startActivity(new Intent(mActivity, MainNewActivity.class));
                     finish();
                 }
             }
@@ -209,7 +209,7 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onError(Throwable t) {
                 AccountManager.sUserBean=null;
-                startActivity(new Intent(mActivity, LoginActivity.class));
+                startActivity(new Intent(mActivity, MainNewActivity.class));
                 finish();
             }
         });

@@ -7,13 +7,19 @@
 
 
 
-    <ImageView
+    <TextView
         android:src="@drawable/pass_app"
-        android:padding="5dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp"
+        android:background="@drawable/text_boder_r_gg"
+        android:text="立即体验"
+        android:textColor="#fffefefe"
+        android:textSize="24sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_marginBottom="65dp"
         android:layout_height="wrap_content" />
-
 </RelativeLayout>

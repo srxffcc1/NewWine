@@ -31,6 +31,7 @@ import com.jiudi.wine.net.RetrofitRequestInterface;
 import com.jiudi.wine.ui.cart.CartDetailActivity;
 import com.jiudi.wine.ui.fenxiao.FenXiaoMenuActivity;
 import com.jiudi.wine.ui.fenxiao.FenXiaoNoActivity;
+import com.jiudi.wine.ui.user.account.LoginActivity;
 import com.jiudi.wine.ui.user.account.TongZhiActivity;
 import com.jiudi.wine.util.NetworkUtil;
 import com.jiudi.wine.util.SPUtil;
@@ -89,12 +90,17 @@ private List<RecommendTabBean> mRecommendTabList = new ArrayList<>();
 
 
         buildFicition();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         getHomeBanner();
     }
 
-
-
     public void buildTab(){
+        mFragments.clear();
+        mainTab.removeAllTabs();
         mFragments.add(new HomeBVFragment());
         for (int i = 1; i <mRecommendTabList.size() ; i++) {
             mFragments.add(new HomeCV2Fragment().setArgumentz("cId",mRecommendTabList.get(i).id+""));
@@ -143,7 +149,7 @@ private List<RecommendTabBean> mRecommendTabList = new ArrayList<>();
                     String info = res.getString("msg");
                     JSONObject data = res.getJSONObject("data");
                     if (code == 200) {
-
+                        mRecommendTabList.clear();
                         JSONArray category = data.getJSONArray("category");
                         RecommendTabBean hotbean = new RecommendTabBean();
                         hotbean.id = "0";
@@ -196,13 +202,17 @@ private List<RecommendTabBean> mRecommendTabList = new ArrayList<>();
         seach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(AccountManager.sUserBean==null)
+                    startActivity(new Intent(mActivity, LoginActivity.class));
+                else
                 startActivity(new Intent(mActivity, SearchMenuShopActivity.class));
             }
         });
         tongzhi.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {                if(AccountManager.sUserBean==null)
+                startActivity(new Intent(mActivity, LoginActivity.class));
+            else
                 startActivity(new Intent(mActivity, TongZhiActivity.class));
             }
         });

@@ -240,6 +240,7 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
                     .into(recycler);
         } else {
             try {
+                vHotSingleAdapter.notifyDataSetChanged();
                 vHotGridAdapter.notifyDataSetChanged();
                 if (needscroll) {
                     manager.scrollToPositionWithOffset(nowindex, 0);

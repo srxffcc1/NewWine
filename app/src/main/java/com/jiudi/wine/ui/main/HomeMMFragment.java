@@ -84,7 +84,7 @@ public class HomeMMFragment extends BaseFragment {
     }
     @Override
     public void initData() {
-        buildTab();
+
     }
 
     private static Long getTimeZero(int fixday) {
@@ -95,8 +95,15 @@ public class HomeMMFragment extends BaseFragment {
         return beginOfDate.getTime();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        buildTab();
+    }
 
     public void buildTab(){
+        mainTab.removeAllTabs();
+        mFragments.clear();
         int reallyindex=getWeekOfDateIndex(new Date(),titles);
         for (int i = 0; i < titles.length; i++) {
             //插入tab标签
@@ -151,15 +158,18 @@ public class HomeMMFragment extends BaseFragment {
     }
     private void changeTabStatus(TabLayout.Tab tab, boolean selected) {
         View view = tab.getCustomView();
-        TextView title = (TextView) view.findViewById(R.id.title);
-        TextView second_title = (TextView) view.findViewById(R.id.second_title);
-        if (selected) {
-            title.setTextColor(Color.parseColor("#FFFFFF"));
-            second_title.setTextColor(Color.parseColor("#FFFFFF"));
-        } else {
-            title.setTextColor(Color.parseColor("#FBC8B7"));
-            second_title.setTextColor(Color.parseColor("#FBC8B7"));
+        if(view!=null){
+            TextView title = (TextView) view.findViewById(R.id.title);
+            TextView second_title = (TextView) view.findViewById(R.id.second_title);
+            if (selected) {
+                title.setTextColor(Color.parseColor("#FFFFFF"));
+                second_title.setTextColor(Color.parseColor("#FFFFFF"));
+            } else {
+                title.setTextColor(Color.parseColor("#FBC8B7"));
+                second_title.setTextColor(Color.parseColor("#FBC8B7"));
+            }
         }
+
     }
 
     @Override

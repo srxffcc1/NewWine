@@ -113,7 +113,7 @@
         <!--高德地图-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="	22dde94a280e5d33b8cf77faaf11fdfe"/>
+            android:value="22dde94a280e5d33b8cf77faaf11fdfe"/>
         <service android:name="com.amap.api.location.APSService"/>
 
         <provider

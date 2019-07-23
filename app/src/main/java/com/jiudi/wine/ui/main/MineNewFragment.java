@@ -104,6 +104,12 @@ public class MineNewFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void initData() {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         getGodsList(false);
     }
 

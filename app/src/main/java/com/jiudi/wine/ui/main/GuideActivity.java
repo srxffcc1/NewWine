@@ -29,7 +29,7 @@ public class GuideActivity extends BaseGuideActivity {
     public void passapp(View view){
         SharedPreferences sp=getSharedPreferences("config", Context.MODE_PRIVATE);
         sp.edit().putBoolean("isfirstinstall",false).commit();
-        startActivity(new Intent(view.getContext(), LoginActivity.class));
+        startActivity(new Intent(view.getContext(), MainNewActivity.class));
         finish();
     }
 }

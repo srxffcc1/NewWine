@@ -1,6 +1,9 @@
 package com.jiudi.wine.ui.main;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +13,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.jiudi.wine.R;
 import com.jiudi.wine.base.BaseActivity;
 import com.jiudi.wine.bean.InvolvedKanJiaGods;
@@ -41,7 +46,7 @@ public class KanJiaListActivity extends BaseActivity {
     private android.widget.LinearLayout nokancontent;
     private List<InvolvedKanJiaGods> InvolvedKanJiaGodsList =new ArrayList<>();
     private List<NormalKanJiaGods> NormalKanJiaGodsList=new ArrayList<>();
-
+    private ImageView needscale;
 
 
     @Override
@@ -56,15 +61,35 @@ public class KanJiaListActivity extends BaseActivity {
         nokancontent = (LinearLayout) findViewById(R.id.nokancontent);
 
 
+        needscale = (ImageView) findViewById(R.id.needscale);
     }
 
     @Override
     public void initData() {
-        getKanList();
+        RequestOptions options = new RequestOptions()
+                .fitCenter()
+                .error(R.drawable.fenxiao_head_icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL);//缓存全尺寸
+        Glide.with(mActivity).load(R.drawable.kanjia_ti).apply(options).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                int swidth= px;
+                int height= (int) ((resource.getIntrinsicHeight()*1.0/resource.getIntrinsicWidth())*swidth);
+                needscale.setLayoutParams(new LinearLayout.LayoutParams(swidth, height));
+                needscale.setImageDrawable(resource);
+            }
+        });
     }
 
     @Override
     public void initEvent() {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getKanList();
 
     }
 
@@ -83,6 +108,7 @@ public class KanJiaListActivity extends BaseActivity {
                         JSONObject data=res.getJSONObject("data");
                         JSONObject bargain=data.getJSONObject("bargain");
                         JSONArray involved=bargain.getJSONArray("involved");
+                        InvolvedKanJiaGodsList.clear();
                         for (int i = 0; i <involved.length() ; i++) {
                             JSONObject jsonObject=involved.getJSONObject(i);
                             InvolvedKanJiaGods kanJiaGods=new InvolvedKanJiaGods();
@@ -96,6 +122,7 @@ public class KanJiaListActivity extends BaseActivity {
                             InvolvedKanJiaGodsList.add(kanJiaGods);
                         }
                         JSONArray normal=bargain.getJSONArray("normal");
+                        NormalKanJiaGodsList.clear();
                         for (int i = 0; i <normal.length() ; i++) {
                             JSONObject jsonObject=normal.getJSONObject(i);
                             NormalKanJiaGods kanJiaGods=new NormalKanJiaGods();
@@ -124,6 +151,8 @@ public class KanJiaListActivity extends BaseActivity {
     }
 
     public void buildList(){
+        yikancontent.removeAllViews();
+        nokancontent.removeAllViews();
         for (int i = 0; i < InvolvedKanJiaGodsList.size() ; i++) {
             buildListView1(InvolvedKanJiaGodsList.get(i));
         }
@@ -228,7 +257,7 @@ public class KanJiaListActivity extends BaseActivity {
         passKan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(mActivity,KanJiaActivity.class).putExtra("id",bean.id));
+                startActivity(new Intent(mActivity,KanJiaActivity.class).putExtra("islik",true).putExtra("id",bean.id));
             }
         });
         nokancontent.addView(view);

@@ -12,7 +12,13 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.jiudi.wine.R;
 import com.jiudi.wine.bean.RecommendTitleBean;
+import com.jiudi.wine.manager.AccountManager;
+import com.jiudi.wine.ui.fenxiao.FenXiaoMenuActivity;
+import com.jiudi.wine.ui.fenxiao.FenXiaoNoActivity;
 import com.jiudi.wine.ui.main.KanJiaListActivity;
+import com.jiudi.wine.ui.user.AllQuanActivity;
+import com.jiudi.wine.ui.user.account.LoginActivity;
+import com.jiudi.wine.ui.user.account.WorkEachActivity;
 
 /**
  * Created by admin on 2017/5/16.
@@ -57,7 +63,15 @@ public class VQuiltyHead2Adapter extends DelegateAdapter.Adapter {
         ct1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(AccountManager.sUserBean==null) {
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                }else{
+                    if ("1".equals((AccountManager.sUserBean == null ? "0" : AccountManager.sUserBean.is_promoter))) {
+                        context.startActivity(new Intent(context, FenXiaoMenuActivity.class));
+                    } else {
+                        context.startActivity(new Intent(context, FenXiaoNoActivity.class));
+                    }
+                }
             }
         });
 
@@ -65,13 +79,19 @@ public class VQuiltyHead2Adapter extends DelegateAdapter.Adapter {
         ct2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(AccountManager.sUserBean==null)
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                else
+                    context.startActivity(new Intent(context, WorkEachActivity.class));
             }
         });
 
         ct3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(AccountManager.sUserBean==null)
+                context.startActivity(new Intent(context, LoginActivity.class));
+            else
             context.startActivity(new Intent(context, KanJiaListActivity.class));
             }
         });
@@ -79,7 +99,10 @@ public class VQuiltyHead2Adapter extends DelegateAdapter.Adapter {
         ct4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(AccountManager.sUserBean==null)
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                else
+                    context.startActivity(new Intent(context, AllQuanActivity.class));
             }
         });
 

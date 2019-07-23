@@ -23,11 +23,13 @@ import com.bumptech.glide.request.transition.Transition;
 import com.jiudi.wine.R;
 import com.jiudi.wine.base.BaseActivity;
 import com.jiudi.wine.bean.RecommendImgBean;
+import com.jiudi.wine.manager.AccountManager;
 import com.jiudi.wine.manager.RequestManager;
 import com.jiudi.wine.net.RetrofitCallBack;
 import com.jiudi.wine.net.RetrofitRequestInterface;
 import com.jiudi.wine.ui.cart.CartDetailActivity;
 import com.jiudi.wine.ui.user.AllQuanActivity;
+import com.jiudi.wine.ui.user.account.LoginActivity;
 import com.jiudi.wine.util.SPUtil;
 
 import org.json.JSONException;
@@ -129,30 +131,46 @@ public class VHot2Adapter extends DelegateAdapter.Adapter {
             tagholder.hot0.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(AccountManager.sUserBean==null){
+                        context.startActivity(new Intent(context, LoginActivity.class));
+                        return;
+                    }
                     getCoupo();
                 }
             });
             tagholder.hot1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(0).product_id));
+                    if(AccountManager.sUserBean==null)
+                        context.startActivity(new Intent(context, LoginActivity.class));
+                    else
+                        context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(0).product_id));
                 }
             });
             tagholder.hot2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(1).product_id));
+                    if(AccountManager.sUserBean==null)
+                        context.startActivity(new Intent(context, LoginActivity.class));
+                    else
+                        context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(1).product_id));
                 }
             });
             tagholder.hot3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(2).product_id));
+                    if(AccountManager.sUserBean==null)
+                        context.startActivity(new Intent(context, LoginActivity.class));
+                    else
+                        context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(2).product_id));
                 }
             });
             tagholder.hot4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(AccountManager.sUserBean==null)
+                        context.startActivity(new Intent(context, LoginActivity.class));
+                    else
                     context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendImgBeans.get(3).product_id));
                 }
             });

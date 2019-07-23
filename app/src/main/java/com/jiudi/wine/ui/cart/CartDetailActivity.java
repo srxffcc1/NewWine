@@ -55,6 +55,7 @@ import com.jiudi.wine.manager.RequestManager;
 import com.jiudi.wine.net.RetrofitCallBack;
 import com.jiudi.wine.net.RetrofitRequestInterface;
 import com.jiudi.wine.ui.main.MainNewActivity;
+import com.jiudi.wine.ui.user.account.LoginActivity;
 import com.jiudi.wine.util.SPUtil;
 import com.jiudi.wine.util.WechatUtil;
 import com.m7.imkfsdk.KfStartHelper;
@@ -590,7 +591,10 @@ public InputStream getImageStream(String path) throws Exception {
         shoucangnum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(AccountManager.sUserBean==null){
+                    startActivity(new Intent(mActivity, LoginActivity.class));
+                    return;
+                }
                 MobclickAgent.onEvent(mActivity,"B_goods_bottom_sc");
                 if ("true".equals(mcarttitlebean.userCollect)) {
                     unshoucang();
@@ -602,7 +606,10 @@ public InputStream getImageStream(String path) throws Exception {
         gouwuchenum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(AccountManager.sUserBean==null){
+                    startActivity(new Intent(mActivity, LoginActivity.class));
+                    return;
+                }
                 startActivity(new Intent(mActivity, MainNewActivity.class));
 //                EventBus.getDefault().post(new CartEvent());
                 EventBus.getDefault().post(new PassCartEvent());
@@ -611,7 +618,10 @@ public InputStream getImageStream(String path) throws Exception {
         kefunum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(AccountManager.sUserBean==null){
+                    startActivity(new Intent(mActivity, LoginActivity.class));
+                    return;
+                }
                 MobclickAgent.onEvent(mActivity,"B_goods_kf");
                 helper.initSdkChat("e183f850-6650-11e9-b942-bf7a16e827df", "咨询", AccountManager.sUserBean.uid, 60);//陈辰正式
             }
@@ -662,9 +672,10 @@ public InputStream getImageStream(String path) throws Exception {
             @Override
             public void onClick(View v) {
                 if ("1".equals(mcarttitlebean.is_special)||"1".equals(mcarttitlebean.is_integral)||"1".equals(mcarttitlebean.is_agent)) {
-                    productId = mcarttitlebean.id;
-                    uniqueId = "0";
-                    lijiGouWu();
+//                    productId = mcarttitlebean.id;
+//                    uniqueId = "0";
+//                    lijiGouWu();
+                    popChose(2);
                 } else {
 
                     MobclickAgent.onEvent(mActivity,"B_goods_bottom_ljgm");
@@ -941,6 +952,10 @@ public InputStream getImageStream(String path) throws Exception {
     }
 
     private void lijiGouWu() {
+        if(AccountManager.sUserBean==null){
+            startActivity(new Intent(mActivity, LoginActivity.class));
+            return;
+        }
         if ("1".equals(mcarttitlebean.is_special) && "1".equals((AccountManager.sUserBean==null?"0":AccountManager.sUserBean.is_promoter))) {
             Toast.makeText(mActivity, "已经是会员不可重复购买", Toast.LENGTH_SHORT).show();
             return;

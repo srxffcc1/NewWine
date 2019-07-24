@@ -22,8 +22,10 @@ import com.jiudi.wine.adapter.vl.VBGifAdapter;
 import com.jiudi.wine.adapter.vl.VHot2Adapter;
 import com.jiudi.wine.adapter.vl.VHotGrid2Adapter;
 import com.jiudi.wine.adapter.vl.VHotHead2Adapter;
+import com.jiudi.wine.adapter.vl.VHotHead4Adapter;
 import com.jiudi.wine.adapter.vl.VHotHeadAdapter;
 import com.jiudi.wine.adapter.vl.VHotSingle2Adapter;
+import com.jiudi.wine.adapter.vl.VHotSingle2_2Adapter;
 import com.jiudi.wine.adapter.vl.VHotTabAdapter;
 import com.jiudi.wine.adapter.vl.VLBannerAdapter;
 import com.jiudi.wine.adapter.vl.VQuiltyHead2Adapter;
@@ -31,6 +33,7 @@ import com.jiudi.wine.adapter.vl.VQuiltyHeadAdapter;
 import com.jiudi.wine.adapter.vl.VRecommendAdapter;
 import com.jiudi.wine.base.BaseFragment;
 import com.jiudi.wine.bean.BannerBean;
+import com.jiudi.wine.bean.GodMiaoSha;
 import com.jiudi.wine.bean.MainGodsBean;
 import com.jiudi.wine.bean.RecommendBean;
 import com.jiudi.wine.bean.RecommendHotBean;
@@ -49,6 +52,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -80,6 +85,8 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
     private List<RecommendImgBean> mRecommendImgList = new ArrayList<>();
     private List<MainGodsBean> mHotVlList = new ArrayList<>();
     private List<RecommendHotBean> mHotRecommendList = new ArrayList<>();
+    private List<RecommendHotBean> mHot2RecommendList = new ArrayList<>();
+    private List<GodMiaoSha> mmiaoshalist=new ArrayList<>();
 
 
     private int page = 0;
@@ -96,9 +103,11 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
     private VHotTabAdapter vHotTabAdapter;
     private VHotGrid2Adapter vHotGridAdapter;
     private VHotSingle2Adapter vHotSingleAdapter;
+    private VHotSingle2_2Adapter vHotSingle2Adapter;
     private android.widget.LinearLayout searchTagl;
     int nowindex = 0;
     private VBGifAdapter vbGifAdapter;
+    private String[] titles = {"周一场", "周二场","周三场","周四场","周五场","周六场","周日场"};
     private android.support.design.widget.TabLayout mainTab;
 
     @Override
@@ -212,13 +221,18 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
 //            adapters.add(vHotHeadAdapter);
 //            nowindex += vHotHeadAdapter.getItemCount();
 
-            vHotAdapter = new VHot2Adapter(mActivity, singleLayoutHelper, mRecommendImgList);
-            adapters.add(vHotAdapter);
-            nowindex += vHotAdapter.getItemCount();
+//            vHotAdapter = new VHot2Adapter(mActivity, singleLayoutHelper, mRecommendImgList);
+//            adapters.add(vHotAdapter);
+//            nowindex += vHotAdapter.getItemCount();
 
-            vHotHead2Adapter = new VHotHead2Adapter(mActivity, singleLayoutHelper);
-            adapters.add(vHotHead2Adapter);
-            nowindex += vHotHead2Adapter.getItemCount();
+//            vHotHead2Adapter = new VHotHead2Adapter(mActivity, singleLayoutHelper);
+//            adapters.add(vHotHead2Adapter);
+//            nowindex += vHotHead2Adapter.getItemCount();
+
+
+            vHotSingle2Adapter = new VHotSingle2_2Adapter(mActivity, singleLayoutHelper, mmiaoshalist);
+            adapters.add(vHotSingle2Adapter);
+            nowindex += vHotSingle2Adapter.getItemCount();
 
             vHotSingleAdapter = new VHotSingle2Adapter(mActivity, singleLayoutHelper, mHotRecommendList);
             adapters.add(vHotSingleAdapter);
@@ -227,6 +241,9 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
 //            vHotTabAdapter = new VHotTabAdapter(mActivity, stickyLayoutHelper, mRecommendTabList, this);
 //            adapters.add(vHotTabAdapter);
 //            nowindex += vHotTabAdapter.getItemCount();
+
+            adapters.add(new VHotHead4Adapter(mActivity,singleLayoutHelper));
+            nowindex += 1;
 
             vHotGridAdapter = new VHotGrid2Adapter(mActivity, gridLayoutHelper2, mHotVlList);
             adapters.add(vHotGridAdapter);
@@ -334,7 +351,8 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
 
 //                        buildRecycleView();
                         ccid = "0";
-                        getGodsList(false);
+//                        getGodsList(false);
+                        getWeekGods();
 
                     }
                 } catch (JSONException e) {
@@ -352,7 +370,98 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
             }
         });
     }
+    private void getWeekGods(){
 
+        int reallyindex=getWeekOfDateIndex(new Date(),titles);
+        getMiaoList(reallyindex+"");
+
+    }
+
+
+
+    private void getMiaoList(String week) {
+        Map<String, String> map = new HashMap<>();
+        map.put("week",week);
+        RequestManager.mRetrofitManager.createRequest(RetrofitRequestInterface.class).getSeckill(SPUtil.get("head", "").toString(),RequestManager.encryptParams(map)).enqueue(new RetrofitCallBack() {
+            @Override
+            public void onSuccess(String response) {
+                try {
+                    JSONObject res = new JSONObject(response);
+                    int code = res.getInt("code");
+                    String info = res.getString("msg");
+                    if (code == 200) {
+                        JSONArray data=res.getJSONArray("data");
+                        if(data.length()<1){
+                            findViewById(R.id.needshowgg).setVisibility(View.VISIBLE);
+                        }
+                        mmiaoshalist.clear();
+                        for (int i = 0; i <data.length() ; i++) {
+                            JSONObject jsonObject=data.getJSONObject(i);
+                            GodMiaoSha bean=new GodMiaoSha();
+                            bean.id=jsonObject.optString("id");
+                            bean.product_id=jsonObject.optString("product_id");
+                            bean.image=jsonObject.optString("image");
+                            bean.images=jsonObject.optString("images");
+                            bean.title=jsonObject.optString("title");
+                            bean.info=jsonObject.optString("info");
+                            bean.price=jsonObject.optString("price");
+                            bean.cost=jsonObject.optString("cost");
+                            bean.ot_price=jsonObject.optString("ot_price");
+                            bean.give_integral=jsonObject.optString("give_integral");
+                            bean.sort=jsonObject.optString("sort");
+                            bean.stock=jsonObject.optInt("stock");
+                            bean.sales=jsonObject.optInt("sales");
+                            bean.unit_name=jsonObject.optString("unit_name");
+                            bean.postage=jsonObject.optString("postage");
+                            bean.description=jsonObject.optString("description");
+                            bean.start_time=jsonObject.optString("start_time");
+                            bean.stop_time=jsonObject.optString("stop_time");
+                            bean.add_time=jsonObject.optString("add_time");
+                            bean.status=jsonObject.optString("status");
+                            bean.is_postage=jsonObject.optString("is_postage");
+                            bean.is_hot=jsonObject.optString("is_hot");
+                            bean.is_del=jsonObject.optString("is_del");
+                            bean.num=jsonObject.optString("num");
+                            bean.is_show=jsonObject.optString("is_show");
+                            mmiaoshalist.add(bean);
+                        }
+                        getGodsList(false);
+//                        buildRecycleView();
+                    }else{
+//                        Toast.makeText(mActivity,info,Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+
+            }
+        });
+    }
+
+
+
+    public int getWeekOfDateIndex(Date date, String[] titles) {
+        String[] weekDays = { "周日场", "周一场", "周二场", "周三场", "周四场", "周五场", "周六场" };
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        if (w < 0)
+            w = 0;
+        String results=weekDays[w];
+        int result=0;
+        for (int i = 0; i <titles.length ; i++) {
+            if(results.equals(titles[i])){
+                result=i;
+            }
+        }
+
+        return result;
+    }
     private void getGodsList(final boolean needscroll) {
         Map<String, String> map = new HashMap<>();
         map.put("first", page + "");

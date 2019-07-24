@@ -46,7 +46,6 @@
                 android:textSize="10sp"
                 android:textStyle="bold" />
             <TextView
-                android:background="@drawable/text_boder_r_pink_rb"
                 android:id="@+id/show_price"
                 android:layout_width="match_parent"
                 android:textSize="12sp"

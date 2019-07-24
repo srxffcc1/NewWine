@@ -151,7 +151,7 @@ public class DateTimeUtil {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String timeIntervals[] = new String[]{day + "", hour + "", min + "", sec + ""};
+        String timeIntervals[] = new String[]{String.format("%02d", day) + "", String.format("%02d", hour) + "", String.format("%02d", min) + "", String.format("%02d", sec) + ""};
 //        System.out.println(day + "天" + hour + "小时" + min + "分" + sec + "秒");
         return timeIntervals;
     }
@@ -186,7 +186,7 @@ public class DateTimeUtil {
         }
         String timeIntervals[] = new String[]{day + "", hour + "", min + "", sec + ""};
         System.out.println();
-        return  hour + ":" + min + ":" + sec + "";
+        return  String.format("%02d",hour) + ":" + String.format("%02d",min) + ":" + String.format("%02d",sec) + "";
     }
 
     /**

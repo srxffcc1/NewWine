@@ -104,13 +104,20 @@ public class MineNewFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void initData() {
-
+        getGodsList(false);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getGodsList(false);
+        if(AccountManager.sUserBean!=null){
+            if(vMineAdapter!=null){
+
+                vMineAdapter.bindDataToView(AccountManager.sUserBean);
+            }
+//            onRefresh();
+        }
+
     }
 
     @Override
@@ -165,6 +172,7 @@ public class MineNewFragment extends BaseFragment implements View.OnClickListene
 //                    .into(recycler);
         }else {
             try {
+                vMineAdapter.bindDataToView(AccountManager.sUserBean);
                 vHotGridAdapter.notifyDataSetChanged();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -213,15 +221,21 @@ public class MineNewFragment extends BaseFragment implements View.OnClickListene
                         }
 
 
+                    }else {
+                        noMoreData();
+                        buildRecycleView(needscroll);
+                        stoploadmore = true;
                     }
 
                 } catch (JSONException e) {
+                    buildRecycleView(needscroll);
                     e.printStackTrace();
                 }
             }
 
             @Override
             public void onError(Throwable t) {
+                buildRecycleView(needscroll);
 
             }
         });

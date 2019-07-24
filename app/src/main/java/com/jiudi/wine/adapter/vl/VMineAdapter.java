@@ -33,6 +33,7 @@ import com.jiudi.wine.ui.user.AddressListActivity;
 import com.jiudi.wine.ui.user.AllOrderActivity;
 import com.jiudi.wine.ui.user.AllQuanActivity;
 import com.jiudi.wine.ui.user.ShopSettingActivity;
+import com.jiudi.wine.ui.user.account.LoginActivity;
 import com.jiudi.wine.ui.user.account.ShouCangActivity;
 import com.jiudi.wine.ui.user.account.TongZhiActivity;
 import com.jiudi.wine.ui.user.account.WorkEachActivity;
@@ -92,6 +93,7 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
     private String chosetext;
     private LinearLayout gopass;
     private TextView intergalv;
+    private TextView quanbu;
 
     private Dialog dialogchosetext;
 
@@ -122,7 +124,7 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
         shoucangnum = (TextView) holder.itemView.findViewById(R.id.shoucangnum);
         quannum = (TextView) holder.itemView.findViewById(R.id.quannum);
 
-
+        quanbu=(TextView) holder.itemView.findViewById(R.id.quanbu);
         name = (TextView) holder.itemView.findViewById(R.id.name);
         level = (TextView) holder.itemView.findViewById(R.id.level);
         code = (TextView) holder.itemView.findViewById(R.id.code);
@@ -145,24 +147,42 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
         collectl = (LinearLayout) holder.itemView.findViewById(R.id.collectl);
         stepl = (LinearLayout) holder.itemView.findViewById(R.id.stepl);
         quanl = (LinearLayout) holder.itemView.findViewById(R.id.quanl);
-        gopass=(LinearLayout) holder.itemView.findViewById(R.id.gopass);
-        intergalv=holder.itemView.findViewById(R.id.intergalv);
+        gopass = (LinearLayout) holder.itemView.findViewById(R.id.gopass);
+        intergalv = holder.itemView.findViewById(R.id.intergalv);
         bindDataToView(AccountManager.sUserBean);
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 context.startActivity(new Intent(context, ShopSettingActivity.class));
             }
         });
         lianxikefu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 new KfStartHelper((Activity) context).initSdkChat("e183f850-6650-11e9-b942-bf7a16e827df", "咨询", AccountManager.sUserBean.uid, 1315);//陈辰正式
             }
         });
         tongzhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
 
 //                MobclickAgent.onEvent(mActivity,"C_personal_coupon_head");
                 context.startActivity(new Intent(context, TongZhiActivity.class));
@@ -177,36 +197,84 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
         allOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
+                context.startActivity(new Intent(v.getContext(), AllOrderActivity.class));
+            }
+        });
+        quanbu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 context.startActivity(new Intent(v.getContext(), AllOrderActivity.class));
             }
         });
         daifukuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 context.startActivity(new Intent(v.getContext(), AllOrderActivity.class).putExtra("type", 1));
             }
         });
         daifahuo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 context.startActivity(new Intent(v.getContext(), AllOrderActivity.class).putExtra("type", 2));
             }
         });
         daishouhuo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 context.startActivity(new Intent(v.getContext(), AllOrderActivity.class).putExtra("type", 3));
             }
         });
         yiwancheng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 context.startActivity(new Intent(v.getContext(), AllOrderActivity.class).putExtra("type", 4));
             }
         });
         erweima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
 
                 context.startActivity(new Intent(context, WorkEachActivity.class));
             }
@@ -214,6 +282,12 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
         dizhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 context.startActivity(new Intent(context, AddressListActivity.class));
             }
         });
@@ -221,6 +295,12 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
         quanl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
 
                 context.startActivity(new Intent(context, AllQuanActivity.class));
             }
@@ -228,6 +308,12 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
         collectl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 context.startActivity(new Intent(context, ShouCangActivity.class));
             }
         });
@@ -235,9 +321,9 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
             @Override
             public void onClick(View v) {
                 try {
-                    if("1".equals((AccountManager.sUserBean==null?"0":AccountManager.sUserBean.is_promoter))){
+                    if ("1".equals((AccountManager.sUserBean == null ? "0" : AccountManager.sUserBean.is_promoter))) {
                         context.startActivity(new Intent(context, FenXiaoMenuActivity.class));
-                    }else{
+                    } else {
                         context.startActivity(new Intent(context, FenXiaoNoActivity.class));
                     }
                 } catch (Exception e) {
@@ -248,6 +334,12 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
         gopass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 if ("1".equals((AccountManager.sUserBean == null ? "0" : AccountManager.sUserBean.is_promoter))) {
 //                    mylessmoneyvalue.setText(AccountManager.sUserBean.now_money);
 //                    dianzhuquanyi2.setText("代理权益");
@@ -272,10 +364,16 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
         dianzhuquanyi2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 try {
-                    if("1".equals((AccountManager.sUserBean==null?"0":AccountManager.sUserBean.is_promoter))){
+                    if ("1".equals((AccountManager.sUserBean == null ? "0" : AccountManager.sUserBean.is_promoter))) {
                         context.startActivity(new Intent(context, FenXiaoMenuActivity.class));
-                    }else{
+                    } else {
                         context.startActivity(new Intent(context, FenXiaoNoActivity.class));
                     }
                 } catch (Exception e) {
@@ -288,9 +386,15 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (AccountManager.sUserBean == null) {
+
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                    return;
+//                                finish();
+                }
                 StyledDialog.init(context);
                 dialogchosetext = StyledDialog.buildNormalInput("个人信息修改", "输入昵称", "",
-                        "确定", "取消",  new MyDialogListener() {
+                        "确定", "取消", new MyDialogListener() {
                             @Override
                             public void onFirst() {
                                 change(chosetext);
@@ -304,9 +408,9 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
                             @Override
                             public void onGetInput(CharSequence input1, CharSequence input2) {
                                 super.onGetInput(input1, input2);
-                                chosetext=input1.toString();
+                                chosetext = input1.toString();
                             }
-                        }).setCancelable(true,true).show();
+                        }).setCancelable(true, true).show();
             }
         });
 
@@ -318,12 +422,13 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
     public int getItemCount() {
         return 1;
     }
+
     private void change(final String chosetext) {
         Map<String, String> map = new HashMap<>();
 //        map.put("customer_id", AccountManager.sUserBean.getId());
-        map.put("type","2");
-        map.put("nickname",chosetext);
-        RequestManager.mRetrofitManager.createRequest(RetrofitRequestInterface.class).changeNick(SPUtil.get("head", "").toString(),RequestManager.encryptParams(map)).enqueue(new RetrofitCallBack() {
+        map.put("type", "2");
+        map.put("nickname", chosetext);
+        RequestManager.mRetrofitManager.createRequest(RetrofitRequestInterface.class).changeNick(SPUtil.get("head", "").toString(), RequestManager.encryptParams(map)).enqueue(new RetrofitCallBack() {
             @Override
             public void onSuccess(String response) {
                 try {
@@ -332,8 +437,8 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
                     String info = res.getString("msg");
                     if (code == 200) {
                         name.setText(chosetext);
-                        AccountManager.sUserBean.nickname=chosetext;
-                        Toast.makeText(context,"修改完成",Toast.LENGTH_SHORT).show();
+                        AccountManager.sUserBean.nickname = chosetext;
+                        Toast.makeText(context, "修改完成", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
@@ -386,7 +491,12 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
                 actGo.setText("立即开通");
             }
             RequestOptions requestOptions = RequestOptions.circleCropTransform().error(R.drawable.head_defuat_circle);
-            Glide.with(context).load((AccountManager.sUserBean.avatar.startsWith("http")) ? AccountManager.sUserBean.avatar : "http://" + AccountManager.sUserBean.avatar).apply(requestOptions).into(head);
+            if (AccountManager.sUserBean.avatar == null) {
+                Glide.with(context).load(R.drawable.head_defuat_circle).apply(requestOptions).into(head);
+            } else {
+                Glide.with(context).load((AccountManager.sUserBean.avatar.startsWith("http")) ? AccountManager.sUserBean.avatar : "http://" + AccountManager.sUserBean.avatar).apply(requestOptions).into(head);
+            }
+
             noBuyb = new QBadgeView(context).setBadgeGravity(Gravity.END | Gravity.TOP).bindTarget(daifukuan).setBadgeText(AccountManager.sUserBean.noBuy + "");
             noPostageb = new QBadgeView(context).setBadgeGravity(Gravity.END | Gravity.TOP).bindTarget(daifahuo).setBadgeText(AccountManager.sUserBean.noPostage + "");
             noTakeb = new QBadgeView(context).setBadgeGravity(Gravity.END | Gravity.TOP).bindTarget(daishouhuo).setBadgeText(AccountManager.sUserBean.noTake + "");
@@ -407,9 +517,9 @@ public class VMineAdapter extends DelegateAdapter.Adapter {
                 noReplyb.hide(false);
 
             }
-            code.setText("邀请码："+AccountManager.sUserBean.uid);
-            shoucangnum.setText(AccountManager.sUserBean.collect_number+"");
-            quannum.setText(AccountManager.sUserBean.coupon_number+"");
+            code.setText("邀请码：" + AccountManager.sUserBean.uid);
+            shoucangnum.setText(AccountManager.sUserBean.collect_number + "");
+            quannum.setText(AccountManager.sUserBean.coupon_number + "");
 
         }
     }

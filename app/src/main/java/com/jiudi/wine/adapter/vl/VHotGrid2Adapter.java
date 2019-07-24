@@ -72,6 +72,7 @@ public class VHotGrid2Adapter extends DelegateAdapter.Adapter {
          TextView yiqianggou;
          TextView baifenbi;
          TextView pass;
+         TextView hasman;
 
         picturel = (LinearLayout) holder.itemView.findViewById(R.id.picturel);
         picture = (ImageView) holder.itemView.findViewById(R.id.picture);
@@ -82,12 +83,12 @@ public class VHotGrid2Adapter extends DelegateAdapter.Adapter {
         baifenbi = (TextView) holder.itemView.findViewById(R.id.baifenbi);
         pass = (TextView) holder.itemView.findViewById(R.id.pass);
 
-
+        hasman=(TextView) holder.itemView.findViewById(R.id.hasman);
         yiqianggou.setText("已抢购"+carChoiceBean.sales+carChoiceBean.unit_name);
         baifenbi.setText(new DecimalFormat("#0").format((carChoiceBean.sales*1.0/carChoiceBean.stock*100))+"%");
         int bili= (int) (carChoiceBean.sales*1.0/carChoiceBean.stock*1000);
         progressz.setProgress(bili);
-
+        hasman.setText(carChoiceBean.sales+"人购买");
 
 //        if(bili>0.15){
 //            yiqianggoub.setLayoutParams(new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.MATCH_PARENT,carChoiceBean.sales));

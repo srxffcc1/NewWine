@@ -16,6 +16,7 @@ import com.jiudi.wine.manager.AccountManager;
 import com.jiudi.wine.ui.fenxiao.FenXiaoMenuActivity;
 import com.jiudi.wine.ui.fenxiao.FenXiaoNoActivity;
 import com.jiudi.wine.ui.main.KanJiaListActivity;
+import com.jiudi.wine.ui.main.SearchShopActivity;
 import com.jiudi.wine.ui.user.AllQuanActivity;
 import com.jiudi.wine.ui.user.account.LoginActivity;
 import com.jiudi.wine.ui.user.account.WorkEachActivity;
@@ -54,13 +55,72 @@ public class VQuiltyHead2Adapter extends DelegateAdapter.Adapter {
          TextView ct2;
          TextView ct3;
          TextView ct4;
+        TextView ct5;
+        TextView ct6;
+        TextView ct7;
+        TextView ct8;
+        View uphuiyuan;
         ct1 = (TextView) holder.itemView.findViewById(R.id.ct1);
         ct2 = (TextView) holder.itemView.findViewById(R.id.ct2);
         ct3 = (TextView) holder.itemView.findViewById(R.id.ct3);
         ct4 = (TextView) holder.itemView.findViewById(R.id.ct4);
 
-
+        ct5 = (TextView) holder.itemView.findViewById(R.id.ct5);
+        ct6 = (TextView) holder.itemView.findViewById(R.id.ct6);
+        ct7 = (TextView) holder.itemView.findViewById(R.id.ct7);
+        ct8 = (TextView) holder.itemView.findViewById(R.id.ct8);
+        uphuiyuan=holder.itemView.findViewById(R.id.uphuiyuan);
+        uphuiyuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ("1".equals((AccountManager.sUserBean == null ? "0" : AccountManager.sUserBean.is_promoter))) {
+                    context.startActivity(new Intent(context, FenXiaoMenuActivity.class));
+                } else {
+                    context.startActivity(new Intent(context, FenXiaoNoActivity.class));
+                }
+            }
+        });
         ct1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    context.startActivity(new Intent(context, SearchShopActivity.class).putExtra("cId","1"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        ct2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    context.startActivity(new Intent(context, SearchShopActivity.class).putExtra("cId","6"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        ct3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    context.startActivity(new Intent(context, SearchShopActivity.class).putExtra("cId","4"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        ct4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    context.startActivity(new Intent(context, SearchShopActivity.class).putExtra("cId","28"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        ct5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(AccountManager.sUserBean==null) {
@@ -76,7 +136,7 @@ public class VQuiltyHead2Adapter extends DelegateAdapter.Adapter {
         });
 
 
-        ct2.setOnClickListener(new View.OnClickListener() {
+        ct6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(AccountManager.sUserBean==null)
@@ -86,7 +146,7 @@ public class VQuiltyHead2Adapter extends DelegateAdapter.Adapter {
             }
         });
 
-        ct3.setOnClickListener(new View.OnClickListener() {
+        ct7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(AccountManager.sUserBean==null)
@@ -96,7 +156,7 @@ public class VQuiltyHead2Adapter extends DelegateAdapter.Adapter {
             }
         });
 
-        ct4.setOnClickListener(new View.OnClickListener() {
+        ct8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(AccountManager.sUserBean==null)

@@ -7,18 +7,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></LinearLayout>
     <LinearLayout
+        android:background="@drawable/text_boder_r_baokuan"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:padding="5dp"
             android:gravity="center_vertical"
             android:layout_height="wrap_content">
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="24h热销榜"
@@ -26,12 +27,17 @@
                 android:textSize="16sp"
                 />
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="排序由销量、搜索、好评等综合得出"
                 android:textColor="#ffffffff"
                 android:textSize="12sp"
                 />
+            <ImageView
+                android:src="@drawable/home_bkuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/hrecycle"

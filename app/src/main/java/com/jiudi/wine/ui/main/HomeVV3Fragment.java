@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,6 +25,7 @@ import com.jiudi.wine.R;
 import com.jiudi.wine.base.BaseFragment;
 import com.jiudi.wine.bean.Fictitious;
 import com.jiudi.wine.bean.RecommendTabBean;
+import com.jiudi.wine.event.PassCartEvent;
 import com.jiudi.wine.manager.AccountManager;
 import com.jiudi.wine.manager.RequestManager;
 import com.jiudi.wine.net.RetrofitCallBack;
@@ -37,6 +39,7 @@ import com.jiudi.wine.util.NetworkUtil;
 import com.jiudi.wine.util.SPUtil;
 import com.jiudi.wine.util.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +54,7 @@ import java.util.Map;
 /**
  * 主页
  */
-public class HomeVV2Fragment extends BaseFragment {
+public class HomeVV3Fragment extends BaseFragment {
 
 
 //    private String[] titles = {"推荐", "日用百货", "个护清洁","数码电器"};
@@ -65,12 +68,14 @@ private List<RecommendTabBean> mRecommendTabList = new ArrayList<>();
     private String[] titles;
     private FrameLayout flChange;
     private TabLayout mainTab;
-    private ImageView tongzhi;
-    private ImageView seach;
+    private TextView tongzhi;
+    private android.widget.EditText searchTag;
+    private TextView seach;
+
 
     @Override
     protected int getInflateViewId() {
-        return R.layout.fragment_homevv2;
+        return R.layout.fragment_homevv3;
     }
 
     @Override
@@ -81,8 +86,9 @@ private List<RecommendTabBean> mRecommendTabList = new ArrayList<>();
         content = (TextView) findViewById(R.id.content);
         flChange = (FrameLayout) findViewById(R.id.fl_change);
         mainTab = (TabLayout) findViewById(R.id.main_tab);
-        tongzhi = (ImageView) findViewById(R.id.tongzhi);
-        seach = (ImageView) findViewById(R.id.seach);
+        tongzhi = (TextView) findViewById(R.id.tongzhi);
+        searchTag = (EditText) findViewById(R.id.search_tag);
+        seach = (TextView) findViewById(R.id.seach);
     }
 
     @Override
@@ -102,39 +108,39 @@ private List<RecommendTabBean> mRecommendTabList = new ArrayList<>();
         mFragments.clear();
         mainTab.removeAllTabs();
         mFragments.add(new HomeBVFragment());
-        for (int i = 1; i <mRecommendTabList.size() ; i++) {
-            mFragments.add(new HomeCV2Fragment().setArgumentz("cId",mRecommendTabList.get(i).id+""));
-        }
-        titles = new String[mRecommendTabList.size()];
-        for (int i = 0; i <mRecommendTabList.size() ; i++) {
-            titles[i]=mRecommendTabList.get(i).cate_name;
-        }
-        for (int i = 0; i < mRecommendTabList.size(); i++) {
-            //插入tab标签
-            mainTab.addTab(mainTab.newTab().setText(mRecommendTabList.get(i).cate_name));
-        }
-        if(mRecommendTabList.size()>4){
-
-            mainTab.setTabMode(TabLayout.MODE_SCROLLABLE);
-        }else{
-
-            mainTab.setTabMode(TabLayout.MODE_FIXED);
-        }
-        mainTab.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                getFragmentManager().beginTransaction().replace(R.id.fl_change,mFragments.get(tab.getPosition())).commitAllowingStateLoss();
-            }
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+//        for (int i = 1; i <mRecommendTabList.size() ; i++) {
+//            mFragments.add(new HomeCV2Fragment().setArgumentz("cId",mRecommendTabList.get(i).id+""));
+//        }
+//        titles = new String[mRecommendTabList.size()];
+//        for (int i = 0; i <mRecommendTabList.size() ; i++) {
+//            titles[i]=mRecommendTabList.get(i).cate_name;
+//        }
+//        for (int i = 0; i < mRecommendTabList.size(); i++) {
+//            //插入tab标签
+//            mainTab.addTab(mainTab.newTab().setText(mRecommendTabList.get(i).cate_name));
+//        }
+//        if(mRecommendTabList.size()>4){
+//
+//            mainTab.setTabMode(TabLayout.MODE_SCROLLABLE);
+//        }else{
+//
+//            mainTab.setTabMode(TabLayout.MODE_FIXED);
+//        }
+//        mainTab.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                getFragmentManager().beginTransaction().replace(R.id.fl_change,mFragments.get(tab.getPosition())).commitAllowingStateLoss();
+//            }
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//
+//            }
+//        });
         getFragmentManager().beginTransaction().replace(R.id.fl_change,mFragments.get(0)).commitAllowingStateLoss();
     }
 
@@ -199,13 +205,20 @@ private List<RecommendTabBean> mRecommendTabList = new ArrayList<>();
                 }
             }
         });
+
+        searchTag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    startActivity(new Intent(mActivity, SearchShopActivity.class));
+            }
+        });
+
         seach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(AccountManager.sUserBean==null)
-                    startActivity(new Intent(mActivity, LoginActivity.class));
-                else
-                startActivity(new Intent(mActivity, SearchMenuShopActivity.class));
+
+                EventBus.getDefault().post(new PassCartEvent());
+//                startActivity(new Intent(mActivity, SearchMenuShopActivity.class));
             }
         });
         tongzhi.setOnClickListener(new View.OnClickListener() {

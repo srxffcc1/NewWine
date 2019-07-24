@@ -28,6 +28,7 @@ import com.jiudi.wine.net.RetrofitCallBack;
 import com.jiudi.wine.net.RetrofitRequestInterface;
 import com.jiudi.wine.ui.fenxiao.FenXiaoMenuActivity;
 import com.jiudi.wine.ui.fenxiao.FenXiaoNoActivity;
+import com.jiudi.wine.ui.user.AllQuanActivity;
 import com.jiudi.wine.ui.user.account.LoginActivity;
 import com.jiudi.wine.ui.user.account.RegisterActivity;
 import com.jiudi.wine.util.SPUtil;
@@ -113,7 +114,6 @@ public class MainNewActivity extends BaseActivity {
                             if (AccountManager.sUserBean != null) {
                                 bean = AccountManager.sUserBean;
                             } else {
-
                                 bean = new UserBean();
                             }
                             bean.uid = jsonObject.optString("uid");
@@ -169,6 +169,7 @@ public class MainNewActivity extends BaseActivity {
                                 e.printStackTrace();
                             }
                             AccountManager.sUserBean = bean;
+
                             buildView(needreset);
                         } else {
                             AccountManager.sUserBean = null;
@@ -214,24 +215,24 @@ public class MainNewActivity extends BaseActivity {
             if (isdianzhu) {
                 navigationController = tab.custom()
                         .addItem(newItem(R.drawable.shouyehui, R.drawable.shouyehong, "首页"))
-                        .addItem(newItem(R.drawable.miaoshahui, R.drawable.miaoshahong, "秒杀"))
-                        .addItem(newRoundItem(R.drawable.kaidianhui, R.drawable.kaidianhong, "代理权益"))
+                        .addItem(newItem(R.drawable.miaoshahui, R.drawable.miaoshahong, "优惠券"))
+                        .addItem(newItem(R.drawable.kaidianhui, R.drawable.kaidianhong, "代理权益"))
                         .addItem(newItem(R.drawable.gouwuchehui, R.drawable.gouwuchehong, "购物车"))
                         .addItem(newItem(R.drawable.wodehui, R.drawable.wodehong, "我的"))
                         .build();
             } else {
                 navigationController = tab.custom()
                         .addItem(newItem(R.drawable.shouyehui, R.drawable.shouyehong, "首页"))
-                        .addItem(newItem(R.drawable.miaoshahui, R.drawable.miaoshahong, "秒杀"))
-                        .addItem(newRoundItem(R.drawable.kaidianhui, R.drawable.kaidianhong, "升级代理"))
+                        .addItem(newItem(R.drawable.miaoshahui, R.drawable.miaoshahong, "优惠券"))
+                        .addItem(newItem(R.drawable.kaidianhui, R.drawable.kaidianhong, "升级代理"))
                         .addItem(newItem(R.drawable.gouwuchehui, R.drawable.gouwuchehong, "购物车"))
                         .addItem(newItem(R.drawable.wodehui, R.drawable.wodehong, "我的"))
                         .build();
             }
             mFragmentList.clear();
 //            mFragmentList.add(new HomeVVFragment());
-            mFragmentList.add(new HomeVV2Fragment());
-            mFragmentList.add(new HomeMMFragment());
+            mFragmentList.add(new HomeVV3Fragment());
+            mFragmentList.add(new QuanYiFragment());
             mFragmentList.add(new QuanYiFragment());
             mFragmentList.add(new CartFragment());
             mFragmentList.add(new MineNewFragment());
@@ -247,16 +248,43 @@ public class MainNewActivity extends BaseActivity {
                         oldindex = index;
 //                        System.out.println("修改老式index:"+oldindex);
                         if(index!=0){
-                            if (AccountManager.sUserBean == null) {
-
-                                startActivity(new Intent(mActivity, LoginActivity.class));
+                            if(index==1){
+                                if (AccountManager.sUserBean == null) {
+                                    startActivity(new Intent(mActivity, LoginActivity.class));
 //                                finish();
+                                }else {
+                                    oldindex=0;
+                                    startActivity(new Intent(mActivity, AllQuanActivity.class));
+                                }
                             }
+                            if(index==2){
+                                if (AccountManager.sUserBean == null) {
+
+                                    startActivity(new Intent(mActivity, LoginActivity.class));
+//                                finish();
+                                }
+                            }
+                            if(index==3){
+                                if (AccountManager.sUserBean == null) {
+
+                                    startActivity(new Intent(mActivity, LoginActivity.class));
+//                                finish();
+                                }
+                            }
+//                            if(index==4){
+//                                if (AccountManager.sUserBean == null) {
+//
+//                                    startActivity(new Intent(mActivity, LoginActivity.class));
+////                                finish();
+//                                }
+//                            }
+
                         }
                     } else {
                         try {
+//                            oldindex = index;
                             if (AccountManager.sUserBean == null) {
-                                oldindex = index;
+
                                 startActivity(new Intent(mActivity, LoginActivity.class));
 //                                Toast.makeText(mActivity, "请登录", Toast.LENGTH_SHORT).show();
                                 return;
@@ -378,6 +406,7 @@ public class MainNewActivity extends BaseActivity {
                 navigationController.setSelect(0);
             }
         } else {
+//            System.out.println("检测开始自动登录");
             autoLogin(false);
         }
     }

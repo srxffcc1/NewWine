@@ -208,6 +208,7 @@
         <activity android:name=".ui.user.WebActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
         <activity android:name=".ui.main.KanJiaListActivity" />
         <activity android:name=".ui.main.KanJiaActivity" />
+        <activity android:name=".ui.main.HomeMMActivity" />
 
 
         <service android:name="com.jiudi.wine.ShopPushService"

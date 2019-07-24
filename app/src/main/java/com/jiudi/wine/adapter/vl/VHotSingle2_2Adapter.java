@@ -25,6 +25,7 @@ import com.jiudi.wine.bean.GodMiaoSha;
 import com.jiudi.wine.bean.RecommendHotBean;
 import com.jiudi.wine.manager.AccountManager;
 import com.jiudi.wine.ui.cart.CartDetailActivity;
+import com.jiudi.wine.ui.main.HomeMMActivity;
 import com.jiudi.wine.ui.main.KanJiaListActivity;
 import com.jiudi.wine.ui.user.account.LoginActivity;
 import com.jiudi.wine.util.DateTimeUtil;
@@ -142,7 +143,7 @@ public class VHotSingle2_2Adapter extends DelegateAdapter.Adapter {
                             if(AccountManager.sUserBean==null)
                                 context.startActivity(new Intent(context, LoginActivity.class));
                             else
-                                context.startActivity(new Intent(context, KanJiaListActivity.class));
+                                context.startActivity(new Intent(context, HomeMMActivity.class));
 //                            context.startActivity(new Intent(context, CartDetailActivity.class).putExtra("id",recommendHotBean.product_id));
                         }
                     });
@@ -159,7 +160,7 @@ public class VHotSingle2_2Adapter extends DelegateAdapter.Adapter {
                     if(AccountManager.sUserBean==null)
                         context.startActivity(new Intent(context, LoginActivity.class));
                     else
-                        context.startActivity(new Intent(context, KanJiaListActivity.class));
+                        context.startActivity(new Intent(context, HomeMMActivity.class));
                 }
             });
         }

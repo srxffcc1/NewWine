@@ -343,6 +343,7 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
                             bean.url = jsonObject.optString("url");
                             bean.product_id = jsonObject.optString("product_id");
                             bean.price = jsonObject.optString("price");
+                            bean.ot_price = jsonObject.optString("ot_price");
                             bean.vip_price = jsonObject.optString("vip_price");
 //                            mHotRecommendList.add(bean);
 //                            mHotRecommendList.add(bean);
@@ -372,7 +373,7 @@ public class HomeBVFragment extends BaseFragment implements View.OnClickListener
     }
     private void getWeekGods(){
 
-        int reallyindex=getWeekOfDateIndex(new Date(),titles);
+        int reallyindex=getWeekOfDateIndex(new Date(),titles)+1;
         getMiaoList(reallyindex+"");
 
     }

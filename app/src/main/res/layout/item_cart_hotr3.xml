@@ -55,6 +55,16 @@
                 android:layout_centerHorizontal="true"
                 android:text=""
                 android:textColor="@color/colorRed" />
+            <TextView
+                android:id="@+id/ot_price"
+                android:layout_width="match_parent"
+                android:textSize="8sp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:text=""
+                android:textColor="#ff9a9a9a" />
         </LinearLayout>
 
 

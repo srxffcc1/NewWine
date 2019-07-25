@@ -78,7 +78,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:textColor="#FFF"
-            android:text="消息"
+            android:text="购物车"
             android:drawableTop="@drawable/home_right2"/>
     </LinearLayout>
 

@@ -3,6 +3,7 @@ package com.jiudi.wine.adapter.vl;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -130,6 +131,8 @@ public class VHotSingle2_2Adapter extends DelegateAdapter.Adapter {
                     ImageView img=holder.itemView.findViewById(R.id.picture);
                     holder.setText(R.id.title,recommendHotBean.title);
                     holder.setText(R.id.show_price,recommendHotBean.price);
+                    holder.setText(R.id.ot_price,recommendHotBean.ot_price);
+                    ((TextView)holder.itemView.findViewById(R.id.ot_price)).getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
                     hlc.setLayoutParams(new LinearLayout.LayoutParams(swidth, LinearLayout.LayoutParams.WRAP_CONTENT));
 //                    img.setLayoutParams(new LinearLayout.LayoutParams(swidth-100, LinearLayout.LayoutParams.WRAP_CONTENT));
                     RequestOptions options = new RequestOptions()

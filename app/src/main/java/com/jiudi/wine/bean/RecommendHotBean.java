@@ -13,4 +13,5 @@ public class RecommendHotBean {
     public String product_id;
     public String price;
     public String vip_price;
+    public String ot_price;
 }

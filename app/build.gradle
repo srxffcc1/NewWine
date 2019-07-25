@@ -116,7 +116,10 @@ dependencies {
     compile 'com.github.chezi008:guidepage:+'
     compile 'pub.devrel:easypermissions:0.4.3'
     compile 'com.lcodecorex:tkrefreshlayout:1.0.7'
-    compile 'com.contrarywind:Android-PickerView:4.1.7'
+    compile ('com.contrarywind:Android-PickerView:4.1.7'){
+        exclude group: 'com.contrarywind', module: 'wheelview'
+    }
+    compile 'com.contrarywind:wheelview:4.0.9'
     compile 'com.daimajia.swipelayout:library:1.2.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.github.hackware1993:MagicIndicator:+'
